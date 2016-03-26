@@ -8,6 +8,13 @@
 #include "Ticket_Book.h"
 
 
+//Sterling Price
+//I want to be. The very best. That no one ever was. Dun dun dun-dun. To create them is my real test, to print them is my cause.
+//I will code across Git-Hub. Commenting far and wide. Dun dun dun-dun. These pointers, do understand, the power that's inside.
+//Venue sort! Gotta create them all. So true. Our programming will pull us through. You access me and I'll access you.
+//VENUE SORT!
+
+
 using namespace std;
 
 using namespace std;
