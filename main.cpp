@@ -38,7 +38,7 @@ int str_to_int(string str) {
     return i;
 }
 
-// Create a Venue object corresponding to The Little Theater.
+// Create venue by prompting user for details
 Venue* Create_Venue()
 {
     string venue_name;
@@ -47,24 +47,23 @@ Venue* Create_Venue()
     string state;
     string zip;
     
-    Seat_Row* seat_rows[MAX_SEATS_PER_ROW];
-    Section* price_sections[MAX_SEATS_PER_SECTION];
-
-    cout << "This is the New Venue program\nPlease enter venue information\n";
-    cout << "Name: ";
-    cin >> venue_name;
+    cout << "This is the New Venue program\n" + 
+        "Please enter venue information";
+    cout << "\nName: ";
+    getline(cin, venue_name);
     cout << "\nStreet Address: ";
-    cin >> street;
+    getline(cin, street);
     cout << "\nCity: ";
-    cin >> city;
+    getline(cin, city);
     cout >> "\nState: ";
-    cin >> state;
+    getline(cin, state);
     cout >> "\nZip: ";
-    cin >> zip;
+    getline(cin, zip);
 
     Address address = {street, city, state, zip};
     Venue* venue = new Venue(venue_name, address);
-    cout << "\nEnter seat row information\nEnter blank line for name when finished";
+    cout << "\nEnter seat row information\n" + 
+        "Enter blank line for name when finished";
 
     // Create seat rows
     while (1) 
@@ -78,8 +77,8 @@ Venue* Create_Venue()
         cout << "\nNumber of seats: ";
         getline(cin, num_seats);
          
-        Seat_Row* sr = Create_Seat_Row(row_name, str_to_int(num_seats));
-        venue->Add_Seat_Row(sr);
+        Seat_Row* row = Create_Seat_Row(row_name, str_to_int(num_seats));
+        venue->Add_Seat_Row(row);
     }
 
     // Create sections
@@ -91,6 +90,7 @@ Venue* Create_Venue()
         cout << "\nSeating Section name: ";
         getline(cin, section_name);
         if (section_name == "") break;
+
         Section* section = new Section(section_name);
         
         // Add rows to a section
@@ -103,6 +103,7 @@ Venue* Create_Venue()
             cout << "\nRow Name: ";
             getline(cin, row_name);
             if (row_name == "") break;
+            
             Seat_Row* row = venue->Get_Seat_Row(row_name);
             
             // Check that row exists

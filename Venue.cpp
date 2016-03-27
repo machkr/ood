@@ -6,7 +6,7 @@
 using namespace std;
 
 Venue::Venue(const string& name_,
-    const Address& address_) :
+    const Address address_) :
     name(name_), address(&address_), 
     number_of_seat_rows(0), 
     number_of_sections(0)
