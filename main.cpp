@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Address.h"
 #include "Seat.h"
 #include "Seat_Row.h"
 #include "Venue.h"
@@ -18,17 +17,6 @@
 
 using namespace std;
 
-
-// Create an Address object with the address of The Little Theater
-Address* Create_Address()
-{
-    Address* address = new Address("19 Foster Street",
-        "Littleton",
-        "MA",
-        1460);
-    return address;
-}
-
 // Create a Seat_Row with the specified name and 
 // specified number of seats,
 Section* Create_Seat_Row(const string seat_row_name,
@@ -37,7 +25,7 @@ Section* Create_Seat_Row(const string seat_row_name,
     Section* row = new Section(seat_row_name);
     for (int i = 1; i <= number_of_seats; ++i)
     {
-        Seat* new_seat = new Seat(seat_row_name, i, &row);
+        Seat* new_seat = new Seat(seat_row_name, i, row);
         row->Add_Seat(new_seat);
     }
     return row;
@@ -53,7 +41,7 @@ int str_to_int(string str) {
 // Create a Venue object corresponding to The Little Theater.
 Venue* Create_Venue()
 {
-    string name;
+    string venue_name;
     string street;
     string city;
     string state;
@@ -146,46 +134,13 @@ Venue* Create_Venue()
 
 Performance* Create_Performance(Venue* venue)
 {
-    Date_Time when = { 4, 2, 2016, 20, 0 };
-    Performance* p = new Performance("Billy Elliot", venue, when);
-    return p;
 }
 
 
 int main()
 {
-    cout << "This is Ticket_Printer\n\n";
-
-    //Address* adr = Create_Address();
-    //adr->Display();
-    //cout << endl;
-
-    //Seat* seat = new Seat("A", 1);
-    //seat->Display();
-    //cout << endl;
-
-    ////Seat_Row* row = new Seat_Row("Test");
-    //Seat_Row* row = Create_Seat_Row("Test", 4);
-    //row->Display();
-    //cout << endl;
-
     Venue* venue = Create_Venue();
-    //venue->Display();
-
-
-    Performance* performance = Create_Performance(venue);
-    //performance->Display();
-
-    //Seat* seat = new Seat("A", 1);
-    //Ticket* ticket = new Ticket(performance, seat);
-    //ticket->Display();
-
-
-    Ticket_Book* ticket_book = new Ticket_Book(performance);
-    ticket_book->Print_Tickets();
-
-    cin.get();   // Hold the window open
-    return 0;
+    venue->Display_All();
 }
 
 
