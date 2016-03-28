@@ -12,7 +12,7 @@ Section::Section(section_name)
 
 void Add_Seat(const Seat* new_seat)
 {
-    assert(number_of_seats < MAX_SEATS_PER_ROW);
+    assert(number_of_seats < MAX_SEATS_PER_SECTION);
     seats[number_of_seats++] = new_seat;
 }
 
