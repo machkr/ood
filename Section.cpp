@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Section::Section(seat S)
+Section::Section(seat* S)
 {}
 
 void Section::Display() const
