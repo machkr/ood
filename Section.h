@@ -12,7 +12,7 @@ private:
     string section_name; //TBD if we even want to use this, the diagram had no such variable
 
 public:
-    Section(seat S);
+    Section(seat* S);
 
     void Display() const;
 };
