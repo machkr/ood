@@ -5,6 +5,7 @@
 #include "Performance.h"
 #include "Ticket.h"
 #include "Ticket_Book.h"
+#include "Section.h"
 
 
 //Sterling Price
