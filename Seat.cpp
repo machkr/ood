@@ -1,17 +1,29 @@
+#include "Seat.h"		// NOT FULLY FUNCTIONAL - IN PROGRESS
+#include "Seat_Row.h"
+#include "Section.h"
 #include <iostream>
-#include "Seat.h"
-
+#include <cassert>
 using namespace std;
 
-Seat::Seat(string Row_Name,
-    int Seat_Number) :
-    seat_row_name(Row_Name),
-    seat_number(Seat_Number)
+Seat::Seat(string Row_Name, int Seat_Number, Seat_Row* Row) :
+	seat_row_name(Row_Name), seat_number(Seat_Number), row(Row), section(NULL)
 {}
 
-void Seat::Display() const
+void Seat::Set_Section(Section* new_section)
 {
-    cout << "Row " << seat_row_name << " Seat " << seat_number << endl;
+	this->section = new_section;
 }
 
+Section* Seat::Get_Section()
+{
+	return section;
+}
+
+Seat::~Seat()
+{
+}
+void Seat::Display() const
+{
+	cout << "Row: " << seat_row_name << "\tSeat: " << seat_number << "\tSection: " << section;
+}
 
