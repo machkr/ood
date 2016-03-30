@@ -6,7 +6,7 @@
 #include "Ticket.h"
 #include "Ticket_Book.h"
 #include "Section.h"
-
+#include <sstream>
 
 //Sterling Price
 //I want to be. The very best. Like no one ever was. Dun dun dun-dun. To create them is my real test, to print them is my cause.
@@ -20,13 +20,13 @@ using namespace std;
 
 // Create a Seat_Row with the specified name and 
 // specified number of seats,
-Section* Create_Seat_Row(const string seat_row_name,
+Seat_Row* Create_Seat_Row(const string seat_row_name,
                           int number_of_seats)
 {
-    Section* row = new Section(seat_row_name);
+    Seat_Row* row = new Seat_Row(seat_row_name);
     for (int i = 1; i <= number_of_seats; ++i)
     {
-        Seat* new_seat = new Seat(seat_row_name, i, row);
+        Seat* new_seat = new Seat(i, row);
         row->Add_Seat(new_seat);
     }
     return row;
@@ -48,22 +48,22 @@ Venue* Create_Venue()
     string state;
     string zip;
     
-    cout << "This is the New Venue program\n" + 
+    cout << "This is the New Venue program\n" <<
         "Please enter venue information";
     cout << "\nName: ";
     getline(cin, venue_name);
-    cout << "\nStreet Address: ";
+    cout << "Street Address: ";
     getline(cin, street);
-    cout << "\nCity: ";
+    cout << "City: ";
     getline(cin, city);
-    cout >> "\nState: ";
+    cout << "State: ";
     getline(cin, state);
-    cout >> "\nZip: ";
+    cout << "Zip: ";
     getline(cin, zip);
 
     Address address = {street, city, state, zip};
     Venue* venue = new Venue(venue_name, address);
-    cout << "\nEnter seat row information\n" + 
+    cout << "\n\nEnter seat row information\n" <<
         "Enter blank line for name when finished";
 
     // Create seat rows
@@ -75,7 +75,7 @@ Venue* Create_Venue()
         cout << "\nSeat row name: ";
         getline(cin, row_name);
         if (row_name == "") break;
-        cout << "\nNumber of seats: ";
+        cout << "Number of seats: ";
         getline(cin, num_seats);
          
         Seat_Row* row = Create_Seat_Row(row_name, str_to_int(num_seats));
@@ -83,7 +83,7 @@ Venue* Create_Venue()
     }
 
     // Create sections
-    cout << "Enter seating section information\n" + 
+    cout << "Enter seating section information\n" <<
         "Enter blank line for seating section when finished";
     while(1) 
     {
@@ -101,11 +101,11 @@ Venue* Create_Venue()
             string first_seat_number;
             string last_seat_number;
             
-            cout << "\nRow Name: ";
+            cout << "Row Name: ";
             getline(cin, row_name);
             if (row_name == "") break;
             
-            Seat_Row* row = venue->Get_Seat_Row(row_name);
+            const Seat_Row* row = venue->Get_Seat_Row(row_name);
             
             // Check that row exists
             if (row == NULL) 
@@ -114,16 +114,16 @@ Venue* Create_Venue()
                 continue;
             }
 
-            cout << "\nFirst seat number: ";
+            cout << "First seat number: ";
             getline(cin, first_seat_number);
-            cout << "\nLast seat number: ";
+            cout << "Last seat number: ";
             getline(cin, last_seat_number);
             
             // Add seats from row to section
             for (int i = str_to_int(first_seat_number);
                     i <= str_to_int(last_seat_number);
                     i++) 
-                    section->Add_Seat(row[i]);
+                    section->Add_Seat(row->Get_Seat(i));
             
         }
         
@@ -136,6 +136,7 @@ Venue* Create_Venue()
 
 Performance* Create_Performance(Venue* venue)
 {
+        return NULL;
 }
 
 

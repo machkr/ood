@@ -1,5 +1,12 @@
 #pragma once
 #include "Seat.h"
+#include <string>
+
+using namespace std;
+
+// Forward declarations to prevent circular dependecny error
+// http://stackoverflow.com/a/628079
+class Seat;
 
 class Seat_Row
 {
@@ -19,7 +26,8 @@ public:
     int Number_of_Seats() const { return number_of_seats; }
 
     const Seat* Get_Seat(int idx) const { return seats[idx]; };
-
+    
+    string Get_Seat_Row_Name() const { return row_name; };
 };
 
 

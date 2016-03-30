@@ -1,22 +1,27 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include "Seat_Row.h"
 #include "Section.h"
 using namespace std;
 
+// Forward declarations to prevent circular dependecny error
+// http://stackoverflow.com/a/628079
+class Seat_Row;
+class Section;
+
 class Seat
 {
 private:
-	string seat_row_name;
 	int seat_number;
-	Seat_Row* row;
+	const Seat_Row* row;
 	Section* section;
 
 
 public:
-	Seat(string Row_Name, int Seat_Number, Seat_Row* Row);
-	void Set_Section(Section* new_section);
-	Section* Get_Section();
-	
+    Seat(int Seat_Number, Seat_Row* Row);
+    void Set_Section(Section* new_section);
+    Section* Get_Section();
+    const Seat_Row* Get_Seat_Row() const;
 	void Display() const;
 };

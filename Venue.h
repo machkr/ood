@@ -1,7 +1,12 @@
 #pragma once
 #include <string>
+#include <iostream>
+#include <cassert>
+#include <iterator>
+#include <map>
 #include "Seat.h"
 #include "Seat_Row.h"
+#include "Section.h"
 
 struct Address {
     string street;
@@ -14,9 +19,10 @@ class Venue
 {
 public:
     static const int MAX_SEAT_ROWS = 1000;
+    static const int MAX_SECTIONS = 1000;
 
 private:
-    string name;
+    string venue_name;
     const Address address;
     const Seat_Row* seat_rows[MAX_SEAT_ROWS];
     const Section* sections[MAX_SEAT_ROWS];
@@ -24,7 +30,7 @@ private:
     int number_of_sections;
 
 public:
-    Venue(const string& name_,
+    Venue(const string& venue_name_,
         const Address address_);
 
     void Add_Seat_Row(const Seat_Row* seat_row);
@@ -43,6 +49,8 @@ public:
     };
 
     const Seat_Row* Get_Seat_Row(string Row_Name) const;
+    
+    const Seat_Row* Get_Seat_Row(int index) const;
 
 
 };

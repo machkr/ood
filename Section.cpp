@@ -7,10 +7,12 @@
 
 using namespace std;
 
-Section::Section(section_name)
+Section::Section(const string& section_name_) :
+        section_name(section_name_),
+        number_of_seats(0)
 {}
 
-void Add_Seat(const Seat* new_seat)
+void Section::Add_Seat(const Seat* new_seat)
 {
     assert(number_of_seats < MAX_SEATS_PER_SECTION);
     seats[number_of_seats++] = new_seat;
