@@ -27,6 +27,8 @@ public:
 
     const Seat* Get_Seat(int idx) const { return seats[idx]; };
     
+    const Seat* Get_Seat_by_Number(int n) const;
+    
     string Get_Seat_Row_Name() const { return row_name; };
 };
 

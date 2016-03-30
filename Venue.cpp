@@ -41,11 +41,10 @@ void Venue::Display_All() const
         cout << "Row" << seat_rows[i]->Get_Seat_Row_Name() << " Seats 1 - " <<
             seat_rows[i]->Number_of_Seats() << "\n";
     }
-    cout << "\n";
 
     for (int i = 0; i < number_of_sections; i++) 
     {
-        cout << "Section " << sections[i]->Get_Section_Name() << "\n";
+        cout << "\nSection " << sections[i]->Get_Section_Name() << "\n";
 
         // Sort seats by Row, put into a map
         std::map<string, Seat_Row*> rows;
@@ -71,7 +70,7 @@ void Venue::Display_All() const
         map<string, Seat_Row*>::iterator it;
         for (it = rows.begin(); it != rows.end(); it++) 
         {
-            cout << "Row " << it->first << "  Seats 1 - " << 
+            cout << "Row " << it->first << "  Seats " <<  
                 it->second->Number_of_Seats() << "\n";
         }
         

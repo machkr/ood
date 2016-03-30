@@ -123,7 +123,7 @@ Venue* Create_Venue()
             for (int i = str_to_int(first_seat_number);
                     i <= str_to_int(last_seat_number);
                     i++) 
-                    section->Add_Seat(row->Get_Seat(i));
+                    section->Add_Seat(row->Get_Seat_by_Number(i));
             
         }
         

@@ -23,5 +23,6 @@ public:
     void Set_Section(Section* new_section);
     Section* Get_Section();
     const Seat_Row* Get_Seat_Row() const;
-	void Display() const;
+    void Display() const;
+    int Get_Seat_Number() const { return seat_number; };
 };

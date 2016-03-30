@@ -26,3 +26,11 @@ void Seat_Row::Display() const
     }
 }
 
+const Seat* Seat_Row::Get_Seat_by_Number(int n) const 
+{
+    for (int i = 0; i < number_of_seats; i++) 
+            if (n == seats[i]->Get_Seat_Number()) return seats[i];
+
+    return NULL;
+}
+
