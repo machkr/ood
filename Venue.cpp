@@ -48,7 +48,7 @@ void Venue::Display_All() const
         cout << "Section " << sections[i]->Get_Section_Name() << "\n";
 
         // Sort seats by Row, put into a map
-        std::map<string, Seat_Row*> rows;
+        map<string, Seat_Row*> rows;
         const Section* s = sections[i];
         for (int j = 0; j < s->Number_of_Seats(); j++)
         {
