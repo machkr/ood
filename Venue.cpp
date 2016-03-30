@@ -70,8 +70,10 @@ void Venue::Display_All() const
         map<string, Seat_Row*>::iterator it;
         for (it = rows.begin(); it != rows.end(); it++) 
         {
-            cout << "Row " << it->first << "  Seats " <<  
-                it->second->Number_of_Seats() << "\n";
+            Seat_Row* row = it->second;   	
+            cout << "Row " << it->first << "  Seats " << 
+                row->Get_Seat(0)->Get_Seat_Number() << " - " <<
+                row->Get_Seat(row->Number_of_Seats() - 1)->Get_Seat_Number() << "\n";
         }
         
         // Destroy map
