@@ -2,9 +2,6 @@
 #include "Seat.h"
 #include "Seat_Row.h"
 #include "Venue.h"
-#include "Performance.h"
-#include "Ticket.h"
-#include "Ticket_Book.h"
 #include "Section.h"
 #include <sstream>
 
@@ -15,27 +12,28 @@
 //In a group we must defend. Venue sort! A code so true. Our programming will pull us through. You access me and I'll access you.
 //VENUE SORT!
 
-
 using namespace std;
 
 // Create a Seat_Row with the specified name and 
 // specified number of seats,
-Seat_Row* Create_Seat_Row(const string seat_row_name,
-                          int number_of_seats)
+Seat_Row* Create_Seat_Row(const string seat_row_name, int number_of_seats)
 {
     Seat_Row* row = new Seat_Row(seat_row_name);
+
     for (int i = 1; i <= number_of_seats; ++i)
     {
         Seat* new_seat = new Seat(i, row);
         row->Add_Seat(new_seat);
     }
+
     return row;
 }
 
 // stoi() is only in C++11 and up. 
-int str_to_int(string str) { 
+int str_to_int(string str)
+{ 
     int i;
-    std::istringstream(str) >> i;
+    istringstream(str) >> i;
     return i;
 }
 
@@ -48,23 +46,28 @@ Venue* Create_Venue()
     string state;
     string zip;
     
-    cout << "This is the New Venue program\n" <<
-        "Please enter venue information";
-    cout << "\nName: ";
+	cout << "Please enter venue information: " << endl;
+
+    cout << "Name: ";
     getline(cin, venue_name);
+
     cout << "Street Address: ";
     getline(cin, street);
+
     cout << "City: ";
     getline(cin, city);
+
     cout << "State: ";
     getline(cin, state);
+
     cout << "Zip: ";
     getline(cin, zip);
 
     Address address = {street, city, state, zip};
     Venue* venue = new Venue(venue_name, address);
-    cout << "\nEnter seat row information\n" <<
-        "Enter a blank line for name when finished";
+
+	cout << "\nEnter seat row information: ";
+	cout << "\nEnter a blank line for name when finished.";
 
     // Create seat rows
     while (1) 
@@ -74,7 +77,9 @@ Venue* Create_Venue()
 
         cout << "\nSeat row name: ";
         getline(cin, row_name);
+
         if (row_name == "") break;
+
         cout << "Number of seats: ";
         getline(cin, num_seats);
          
@@ -83,14 +88,16 @@ Venue* Create_Venue()
     }
 
     // Create sections
-    cout << "Enter seating section information\n" <<
-        "Enter blank line for seating section when finished";
+	cout << "Enter seating section information: ";
+	cout << "Enter a blank line for section name when finished";
+
     while(1) 
     {
         string section_name;
         cout << "\nSeating Section name: ";
         getline(cin, section_name);
-		  cout << "Enter Row names and seat number ranges";
+
+		cout << "Enter Row names and seat number ranges";
         if (section_name == "") break;
 
         Section* section = new Section(section_name);
@@ -117,15 +124,15 @@ Venue* Create_Venue()
 
             cout << "First seat number: ";
             getline(cin, first_seat_number);
+
             cout << "Last seat number: ";
             getline(cin, last_seat_number);
             
             // Add seats from row to section
             for (int i = str_to_int(first_seat_number);
-                    i <= str_to_int(last_seat_number);
-                    i++) 
-                    section->Add_Seat(row->Get_Seat_by_Number(i));
-            
+					i <= str_to_int(last_seat_number);
+					i++) 
+				section->Add_Seat(row->Get_Seat_by_Number(i));
         }
         
         venue->Add_Section(section);
@@ -134,17 +141,10 @@ Venue* Create_Venue()
     return venue;
 }
 
-
-Performance* Create_Performance(Venue* venue)
-{
-        return NULL;
-}
-
-
 int main()
 {
+	cout << "This is the New Venue program!" << endl;
+
     Venue* venue = Create_Venue();
     venue->Display_All();
 }
-
-
