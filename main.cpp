@@ -46,7 +46,7 @@ Venue* Create_Venue()
     string state;
     string zip;
     
-	cout << "Please enter venue information: " << endl;
+	cout << "Please enter venue information" << endl;
 
     cout << "Name: ";
     getline(cin, venue_name);
@@ -66,8 +66,8 @@ Venue* Create_Venue()
     Address address = {street, city, state, zip};
     Venue* venue = new Venue(venue_name, address);
 
-	cout << "\nEnter seat row information: ";
-	cout << "\nEnter a blank line for name when finished.";
+	cout << endl << "Enter seat row information ";
+	cout << endl << "Enter blank line for name when finished" << endl;;
 
     // Create seat rows
     while (1) 
@@ -75,7 +75,7 @@ Venue* Create_Venue()
         string row_name;
         string num_seats;
 
-        cout << "\nSeat row name: ";
+        cout << "Seat row name: ";
         getline(cin, row_name);
 
         if (row_name == "") break;
@@ -88,16 +88,17 @@ Venue* Create_Venue()
     }
 
     // Create sections
-	cout << "Enter seating section information: ";
-	cout << "Enter a blank line for section name when finished";
+	cout << endl << "Enter seating section information";
+	cout << endl << "Enter blank line for seating section name when finished" << endl;
 
     while(1) 
     {
         string section_name;
-        cout << "\nSeating Section name: ";
+        cout << endl << "Seating Section name: ";
         getline(cin, section_name);
 
 		cout << "Enter Row names and seat number ranges";
+		cout << endl << "Enter a blank line for row name when finished with this section" << endl;
         if (section_name == "") break;
 
         Section* section = new Section(section_name);
@@ -109,7 +110,7 @@ Venue* Create_Venue()
             string first_seat_number;
             string last_seat_number;
             
-            cout << "\nRow Name: ";
+            cout << "Row Name: ";
             getline(cin, row_name);
             if (row_name == "") break;
             
@@ -118,7 +119,7 @@ Venue* Create_Venue()
             // Check that row exists
             if (row == NULL) 
             {
-                cout << "\nThat is not a valid row name!\n";
+                cout << "\nThat is not a valid row name!" << endl << endl;
                 continue;
             }
 
@@ -147,4 +148,9 @@ int main()
 
     Venue* venue = Create_Venue();
     venue->Display_All();
+
+	cin.get();
+	cin.get();
+
+	return 0;
 }

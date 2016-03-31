@@ -42,6 +42,8 @@ void Venue::Display_All() const
             seat_rows[i]->Number_of_Seats() << "\n";
     }
 
+	cout << endl << "Seating Sections:";
+
     for (int i = 0; i < number_of_sections; i++) 
     {
         cout << "\nSection " << sections[i]->Get_Section_Name() << "\n";
