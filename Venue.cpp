@@ -36,7 +36,10 @@ void Venue::Display_All() const
 {
     cout << "\nThe new venue:\n" << venue_name << "\n" << address.street << "\n" 
         << address.city << ", " << address.state << " " << address.zip << "\n";
-    for (int i = 0; i < number_of_seat_rows; i++) 
+    
+	cout << endl << "All Seat Rows:" << endl;
+
+	for (int i = 0; i < number_of_seat_rows; i++) 
     {
         cout << "Row " << seat_rows[i]->Get_Seat_Row_Name() << " Seats 1 - " <<
             seat_rows[i]->Number_of_Seats() << "\n";
@@ -73,7 +76,7 @@ void Venue::Display_All() const
         for (it = rows.begin(); it != rows.end(); it++) 
         {
             Seat_Row* row = it->second;   	
-            cout << "Row " << it->first << "  Seats " << 
+            cout << "Row " << it->first << " Seats " << 
                 row->Get_Seat(0)->Get_Seat_Number() << " - " <<
                 row->Get_Seat(row->Number_of_Seats() - 1)->Get_Seat_Number() << "\n";
         }
