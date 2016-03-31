@@ -63,8 +63,8 @@ Venue* Create_Venue()
 
     Address address = {street, city, state, zip};
     Venue* venue = new Venue(venue_name, address);
-    cout << "\n\nEnter seat row information\n" <<
-        "Enter blank line for name when finished";
+    cout << "\nEnter seat row information\n" <<
+        "Enter a blank line for name when finished";
 
     // Create seat rows
     while (1) 
@@ -90,6 +90,7 @@ Venue* Create_Venue()
         string section_name;
         cout << "\nSeating Section name: ";
         getline(cin, section_name);
+		  cout << "Enter Row names and seat number ranges";
         if (section_name == "") break;
 
         Section* section = new Section(section_name);
@@ -101,7 +102,7 @@ Venue* Create_Venue()
             string first_seat_number;
             string last_seat_number;
             
-            cout << "Row Name: ";
+            cout << "\nRow Name: ";
             getline(cin, row_name);
             if (row_name == "") break;
             

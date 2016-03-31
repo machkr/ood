@@ -34,11 +34,11 @@ void Venue::Display() const
 
 void Venue::Display_All() const
 {
-    cout << "The new venue:\n" << venue_name << "\n" << address.street << "\n" 
+    cout << "\nThe new venue:\n" << venue_name << "\n" << address.street << "\n" 
         << address.city << ", " << address.state << " " << address.zip << "\n";
     for (int i = 0; i < number_of_seat_rows; i++) 
     {
-        cout << "Row" << seat_rows[i]->Get_Seat_Row_Name() << " Seats 1 - " <<
+        cout << "Row " << seat_rows[i]->Get_Seat_Row_Name() << " Seats 1 - " <<
             seat_rows[i]->Number_of_Seats() << "\n";
     }
 
