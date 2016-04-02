@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Address::Address(string Street_Address, string City, string State, int ZIP_Code)
+Address::Address(string Street_Address, string City, string State, string ZIP_Code)
 {
 	street_address = Street_Address;
 	city = City;
@@ -15,9 +15,7 @@ Address::Address(string Street_Address, string City, string State, int ZIP_Code)
 
 void Address::Display() const
 {
-	cout.fill('0');
 	cout << street_address << endl;
 	cout << city << ", " << state << " ";
-	cout.width(5);
 	cout << zip_code << endl;
 }
