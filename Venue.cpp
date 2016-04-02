@@ -1,7 +1,5 @@
 #include "Venue.h"
 
-//I want to be. The very best.
-
 using namespace std;
 
 Venue::Venue(const string& venue_name_,
@@ -36,8 +34,8 @@ void Venue::Display() const
 
 void Venue::Display_All() const
 {
-    cout << "\nThe new venue:\n" << venue_name << "\n" << address.street << "\n" 
-        << address.city << ", " << address.state << " " << address.zip << "\n";
+	cout << "\nThe new venue:\n" << venue_name << endl;
+	address.Display();
     
 	cout << endl << "All Seat Rows:" << endl;
 
