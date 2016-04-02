@@ -138,7 +138,7 @@ Venue* Create_Venue()
 
 int main()
 {
-	cout << "This is the New Venue program!" << endl;
+	cout << "This is the Level 0 Ticket Booth program!" << endl;
 
     Venue* venue = Create_Venue();
     venue->Display_All();
