@@ -15,10 +15,5 @@ public:
 	Address(string Street_Address, string City, string State, string ZIP_Code);
 	Address() {};
 
-	string Street_Address() { return street_address; };
-	string City() { return city; };
-	string State() { return state; };
-	string ZIP_Code() { return zip_code; };
-
 	void Display() const;
 };
