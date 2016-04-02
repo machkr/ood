@@ -1,5 +1,3 @@
-//Test
-
 #include <iostream>
 #include <string>
 #include <cassert>
