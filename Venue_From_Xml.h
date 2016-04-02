@@ -1,5 +1,6 @@
 #pragma once
 #include "tinyxml.h"
+
 static class Venue_from_Xml
 {
 public:

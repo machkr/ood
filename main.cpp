@@ -1,15 +1,17 @@
 #include <iostream>
+#include <sstream>
+
 #include "Address.h"
 #include "Seat.h"
 #include "Seat_Row.h"
 #include "Venue.h"
 #include "Section.h"
-#include <sstream>
+#include "tinyxml.h"
+#include "Venue_From_Xml.h"
 
 using namespace std;
 
-// Create a Seat_Row with the specified name and 
-// specified number of seats,
+//Create a Seat_Row with the specified name and specified number of seats,
 Seat_Row* Create_Seat_Row(const string seat_row_name, int number_of_seats)
 {
     Seat_Row* row = new Seat_Row(seat_row_name);
@@ -23,7 +25,7 @@ Seat_Row* Create_Seat_Row(const string seat_row_name, int number_of_seats)
     return row;
 }
 
-// stoi() is only in C++11 and up. 
+//stoi() is only in C++11 and up. 
 int str_to_int(string str)
 { 
     int i;
@@ -31,7 +33,7 @@ int str_to_int(string str)
     return i;
 }
 
-// Create venue by prompting user for details
+//Create venue by prompting user for details
 Venue* Create_Venue()
 {
     string venue_name;
@@ -63,7 +65,7 @@ Venue* Create_Venue()
 	cout << endl << "Enter seat row information ";
 	cout << endl << "Enter blank line for name when finished" << endl;;
 
-    // Create seat rows
+    //Create seat rows
     while (1) 
     {
         string row_name;
@@ -81,7 +83,7 @@ Venue* Create_Venue()
         venue->Add_Seat_Row(row);
     }
 
-    // Create sections
+    //Create sections
 	cout << endl << "Enter seating section information";
 	cout << endl << "Enter blank line for seating section name when finished" << endl;
 
@@ -97,7 +99,7 @@ Venue* Create_Venue()
 
         Section* section = new Section(section_name);
         
-        // Add rows to a section
+        //Add rows to a section
         while (1) 
         {
             string row_name;
@@ -110,7 +112,7 @@ Venue* Create_Venue()
             
             const Seat_Row* row = venue->Get_Seat_Row(row_name);
             
-            // Check that row exists
+            //Check that row exists
             if (row == NULL) 
             {
                 cout << "\nThat is not a valid row name!" << endl << endl;
@@ -123,7 +125,7 @@ Venue* Create_Venue()
             cout << "Last seat number: ";
             getline(cin, last_seat_number);
             
-            // Add seats from row to section
+            //Add seats from row to section
             for (int i = str_to_int(first_seat_number);
 					i <= str_to_int(last_seat_number);
 					i++) 
@@ -140,11 +142,35 @@ int main()
 {
 	cout << "This is the Level 0 Ticket Booth program!" << endl;
 
-    Venue* venue = Create_Venue();
-    venue->Display_All();
+    //Venue* venue = Create_Venue();
+    //venue->Display_All();
+
+	string filename = "Venue.xml";
+	TiXmlDocument doc(filename);
+	bool loadOkay = doc.LoadFile();
+
+	if (!loadOkay)
+	{
+		cout << "Could not load file " << filename << endl;
+		cout << "Error='" << doc.ErrorDesc() << "'. Exiting.\n";
+		cin.get();
+		exit(1);
+	}
+
+	cout << filename << " read from disk " << endl;
+	//cout << "Printing via doc.Print \n";
+	//doc.Print(stdout);
+	
+	TiXmlNode* venue_file_node = doc.FirstChild("venue_file");
+	assert(venue_file_node != 0);
+	cout << venue_file_node->Value() << endl;
+
+	TiXmlNode* venue_node = venue_file_node->FirstChild();
+	assert(venue_node != 0);
+	cout << venue_node->Value() << endl;
+
+	Venue_from_Xml::Get_Venue(venue_node);
 
 	cin.get();
-	cin.get();
-
 	return 0;
-}
+}

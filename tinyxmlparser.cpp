@@ -1,4 +1,4 @@
-www.sourceforge.net/projects/tinyxml
+/*www.sourceforge.net/projects/tinyxml
 Original code by Lee Thomason (www.grinninglizard.com)
 
 This software is provided 'as-is', without any express or implied 
@@ -18,8 +18,7 @@ would be appreciated but is not required.
 must not be misrepresented as being the original software.
 
 3. This notice may not be removed or altered from any source 
-distribution.
-*/
+distribution.*/
 
 #include <ctype.h>
 #include <stddef.h>
