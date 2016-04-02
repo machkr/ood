@@ -5,13 +5,6 @@
 #include "Section.h"
 #include <sstream>
 
-//Sterling Price
-//I want to be. The very best. Like no one ever was. Dun dun dun-dun. To create them is my real test, to print them is my cause.
-//I will code across Git-Hub. Commenting far and wide. Dun dun dun-dun. These pointers, do understand, the seat that's inside.
-//Venue sort! Gotta create them all. It's you and me. I know it's my Programming Grade. Venue sort! Ohh, you're my best program.
-//In a group we must defend. Venue sort! A code so true. Our programming will pull us through. You access me and I'll access you.
-//VENUE SORT!
-// blah blah
 using namespace std;
 
 // Create a Seat_Row with the specified name and 
