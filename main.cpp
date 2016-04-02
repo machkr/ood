@@ -58,7 +58,7 @@ Venue* Create_Venue()
     getline(cin, zip);
 
     Address* address = new Address(street, city, state, zip);  
-    Venue* venue = new Venue(venue_name, address);
+    Venue* venue = new Venue(venue_name, *address);
 
 	cout << endl << "Enter seat row information ";
 	cout << endl << "Enter blank line for name when finished" << endl;;

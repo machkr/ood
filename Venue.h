@@ -4,16 +4,10 @@
 #include <cassert>
 #include <iterator>
 #include <map>
+#include "Address.h"
 #include "Seat.h"
 #include "Seat_Row.h"
 #include "Section.h"
-
-struct Address {
-    string street;
-    string city;
-    string state;
-    string zip;
-};
 
 class Venue
 {
@@ -23,7 +17,7 @@ public:
 
 private:
     string venue_name;
-    const Address address;
+    Address address;
     const Seat_Row* seat_rows[MAX_SEAT_ROWS];
     const Section* sections[MAX_SEAT_ROWS];
     int number_of_seat_rows;
@@ -51,8 +45,6 @@ public:
     const Seat_Row* Get_Seat_Row(string Row_Name) const;
     
     const Seat_Row* Get_Seat_Row(int index) const;
-
-
 };
 
 
