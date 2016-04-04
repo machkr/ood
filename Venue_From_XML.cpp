@@ -5,7 +5,50 @@
 
 using namespace std;
 
-Venue* Venue_From_XML::Get_Venue_From_XML(TiXmlNode* venue_node)
+Venue* Venue_From_XML::Get_Venue_From_XML(string filename)
+{
+	TiXmlDocument doc(filename);
+	bool loadOkay = doc.LoadFile();
+
+	if (!loadOkay)
+	{
+		cout << "Could not load " << filename << "." << endl;
+		cout << "Error='" << doc.ErrorDesc() << "'. Exiting.\n";
+		cin.get();
+		exit(1);
+	}
+
+	cout << filename << " has been loaded successfully." << endl;
+
+	TiXmlNode* venue_file_node = doc.FirstChild("venue_file");						//Node - Venue File
+	assert(venue_file_node != 0);
+
+	TiXmlNode* venue_node = venue_file_node->FirstChild();							//Node - Venue
+	assert(venue_node != 0);
+
+	TiXmlNode* name_node = venue_node->FirstChild();								//Node - Name
+	assert(name_node != 0);
+
+	TiXmlNode* name_text_node = name_node->FirstChild();							//Node - Venue Name
+	assert(name_text_node != 0);
+	string venue_name = name_text_node->Value();									//Get venue name
+
+	TiXmlNode* address_node = name_node->NextSibling();								//Node - Address
+	assert(address_node != 0);
+	Address* address = Get_Address(address_node);									//Get address
+
+	Venue* venue = new Venue(venue_name, *address);									//Create new venue
+
+	TiXmlNode* seat_row_node = address_node->NextSibling();							//Node - Seat Row
+	assert(seat_row_node != 0);
+	Seat_Row* seat_rows = Get_Seats(seat_row_node);
+
+	venue->
+
+	return venue;																	//Return new venue
+}
+
+Address* Venue_From_XML::Get_Address(TiXmlNode* address_node)
 {
 	string venue_name;
 	string street_address;
@@ -13,98 +56,76 @@ Venue* Venue_From_XML::Get_Venue_From_XML(TiXmlNode* venue_node)
 	string state;
 	int zip_code;
 
-	TiXmlNode* name_node = venue_node->FirstChild();					//Name node
-	assert(name_node != 0);
-
-	TiXmlNode* name_text_node = name_node->FirstChild();				//Venue name node
-	assert(name_text_node != 0);
-	venue_name = name_text_node->Value();
-
-	TiXmlNode* address_node = name_node->NextSibling();					//Address node
-	assert(address_node != 0);
-
-	TiXmlNode* street_node = address_node->FirstChild();				//Street Address node
+	TiXmlNode* street_node = address_node->FirstChild();							//Street Address node
 	assert(street_node != 0);
-	street_address = street_node->FirstChild()->Value();
+	street_address = street_node->FirstChild()->Value();							//Get street address
 
-	TiXmlNode* city_node = street_node->NextSibling();					//City node
+	TiXmlNode* city_node = street_node->NextSibling();								//City node
 	assert(city_node != 0);
-	city = city_node->FirstChild()->Value();
+	city = city_node->FirstChild()->Value();										//Get city
 
-	TiXmlNode* state_node = city_node->NextSibling();					//State node
+	TiXmlNode* state_node = city_node->NextSibling();								//State node
 	assert(state_node != 0);
-	state = state_node->FirstChild()->Value();
+	state = state_node->FirstChild()->Value();										//Get state
 
-	TiXmlNode* zip_code_node = state_node->NextSibling();				//Zip Code node
+	TiXmlNode* zip_code_node = state_node->NextSibling();							//Zip Code node
 	assert(zip_code_node != 0);
-	istringstream(zip_code_node->FirstChild()->Value()) >> zip_code;
+	istringstream(zip_code_node->FirstChild()->Value()) >> zip_code;				//Get zip code
 
-	Address* address = new Address(street_address, city, state, zip_code);
+	Address* address = new Address(street_address, city, state, zip_code);			//Create new address
+	return address;																	//Return new address
+}
 
-	TiXmlNode* seat_row_node = address_node->NextSibling();
-	assert(seat_row_node != 0);
+Seat_Row* Venue_From_XML::Get_Seats(TiXmlNode* seat_row_node)
+{
+	Seat_Row* seat_rows;
 
-	Get_Seats(seat_row_node);
+	while (seat_row_node != 0)
+	{
+		seat_rows->Add_Get_Seat_Row(seat_row_node);
+		seat_row_node = seat_row_node->NextSibling();
+	}
 
-	Venue* venue = new Venue(venue_name, *address);
-	return venue;
+	return seat_rows;
 }
 
 Seat_Row* Venue_From_XML::Get_Seat_Row(TiXmlNode* seat_row_node)
 {
 	string row_name;
+	int number_of_seats;
 
-	//cout << seat_row_node->Value() << endl;
-	TiXmlNode* name_node = seat_row_node->FirstChild("name");
+	TiXmlNode* name_node = seat_row_node->FirstChild("name");						//Node - Row Name
 	assert(name_node != 0);
-	//cout << name_node->Value() << ": ";
-	row_name = name_node->FirstChild()->Value();
+	row_name = name_node->FirstChild()->Value();									//Get row name
 
 	Seat_Row* row = new Seat_Row(row_name);
 
-	TiXmlNode* seat_node = seat_row_node->FirstChild("seat");
-	while (seat_node != 0)
+	TiXmlNode* seat_node = seat_row_node->FirstChild("seat");						//Node - Seat
+	for (number_of_seats = 0; seat_node != 0; number_of_seats++)
 	{
-		//cout << seat_node->Value() << " ";
-		Seat* new_seat = Get_Seat(seat_node, row_name);
-		row->Add_Seat(new_seat);
-		seat_node = seat_node->NextSibling();
+		Seat* seat = Get_Seat(seat_node);											//Create new seat
+		seat->Set_Seat_Row(row);													//Set new seat row
+		row->Add_Seat(seat);														//Add seat to row
+		seat_node = seat_node->NextSibling();										//Iterate
 	}
 
+	row->Number_of_Seats = number_of_seats;
 	return row;
 }
 
-void Venue_From_XML::Add_Seat_Rows(Venue* venue)
+Seat* Venue_From_XML::Get_Seat(TiXmlNode* seat_node)
 {
-
-}
-
-void Venue_From_XML::Add_Sections(Venue* venue)
-{
-
-}
-
-void Venue_From_XML::Get_Seats(TiXmlNode* seat_row_node)
-{
-	while (seat_row_node != 0)
-	{
-		Get_Seat_Row(seat_row_node);
-		seat_row_node = seat_row_node->NextSibling();
-	}
-}
-
-Seat* Venue_From_XML::Get_Seat(TiXmlNode* seat_node, Seat_Row* row)
-{
-	string seat_number;
+	int seat_number;
 	string section_name;
 
-	TiXmlNode* number_node = seat_node->FirstChild("number");
-	//cout << number_node->Value() << ": ";
-	seat_number = number_node->FirstChild()->Value();
+	TiXmlNode* number_node = seat_node->FirstChild("number");						//Node - Seat Number
+	assert(number_node != 0);
+	istringstream(number_node->FirstChild()->Value()) >> seat_number;				//Get seat number
 
-	TiXmlNode* section_node = seat_node->FirstChild("section");
-	//cout << section_node->Value() << ": ";
-	section_name = section_node->FirstChild()->Value();
-	Seat* seat = new Seat(stoi(seat_number), row);
-	return seat;
+	TiXmlNode* section_node = seat_node->FirstChild("section");						//Node - Seat Section
+	assert(section_node != 0);
+	section_name = section_node->FirstChild()->Value();								//Get seat section name
+
+	Seat* new_seat = new Seat(seat_number);											//Create new seat
+	return new_seat;																//Return new seat
 }

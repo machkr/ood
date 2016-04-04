@@ -87,7 +87,6 @@ void Venue::Display_All() const
 
     }
     cout << "\n";
-
 }
 
 // Return number of seats
