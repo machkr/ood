@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Address::Address(string Street_Address, string City, string State, string ZIP_Code)
+Address::Address(const string& Street_Address, const string& City, const string& State, const string& ZIP_Code)
 {
 	street_address = Street_Address;
 	city = City;

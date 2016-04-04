@@ -142,9 +142,6 @@ int main()
 {
 	cout << "This is the Level 0 Ticket Booth program!" << endl;
 
-    //Venue* venue = Create_Venue();
-    //venue->Display_All();
-
 	string filename = "Venue.xml";
 	TiXmlDocument doc(filename);
 	bool loadOkay = doc.LoadFile();
@@ -169,7 +166,8 @@ int main()
 	assert(venue_node != 0);
 	cout << venue_node->Value() << endl;
 
-	Venue_from_Xml::Get_Venue(venue_node);
+	Venue* venue = Venue_from_XML::Get_Venue_From_XML(venue_node);
+	venue->Display_All;
 
 	cin.get();
 	return 0;
