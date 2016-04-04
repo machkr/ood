@@ -1,27 +1,45 @@
 #include <iostream>
 #include "tinyxml.h"
 #include "Venue.h"
-#include "Venue_from_XML.h"
+#include "Venue_From_XML.h"
 
 using namespace std;
 
-Venue* Venue_from_XML::Get_Venue_From_XML(TiXmlNode* venue_node)
+Venue* Venue_From_XML::Get_Venue_From_XML(TiXmlNode* venue_node)
 {
 	string venue_name;
+	string street_address;
+	string city;
+	string state;
+	int zip_code;
 
-	TiXmlNode* name_node = venue_node->FirstChild();
+	TiXmlNode* name_node = venue_node->FirstChild();					//Name node
 	assert(name_node != 0);
-	//cout << name_node->Value() << endl;
 
-	TiXmlNode* name_text_node = name_node->FirstChild();
+	TiXmlNode* name_text_node = name_node->FirstChild();				//Venue name node
 	assert(name_text_node != 0);
 	venue_name = name_text_node->Value();
 
-	TiXmlNode* address_node = name_node->NextSibling();
+	TiXmlNode* address_node = name_node->NextSibling();					//Address node
 	assert(address_node != 0);
-	//cout << address_node->Value() << endl;
 
-	Address* address = Get_Address(address_node);
+	TiXmlNode* street_node = address_node->FirstChild();				//Street Address node
+	assert(street_node != 0);
+	street_address = street_node->FirstChild()->Value();
+
+	TiXmlNode* city_node = street_node->NextSibling();					//City node
+	assert(city_node != 0);
+	city = city_node->FirstChild()->Value();
+
+	TiXmlNode* state_node = city_node->NextSibling();					//State node
+	assert(state_node != 0);
+	state = state_node->FirstChild()->Value();
+
+	TiXmlNode* zip_code_node = state_node->NextSibling();				//Zip Code node
+	assert(zip_code_node != 0);
+	istringstream(zip_code_node->FirstChild()->Value()) >> zip_code;
+
+	Address* address = new Address(street_address, city, state, zip_code);
 
 	TiXmlNode* seat_row_node = address_node->NextSibling();
 	assert(seat_row_node != 0);
@@ -32,35 +50,7 @@ Venue* Venue_from_XML::Get_Venue_From_XML(TiXmlNode* venue_node)
 	return venue;
 }
 
-Address* Venue_from_XML::Get_Address(TiXmlNode* address_node)
-{
-	string street_address;
-	string city;
-	string state;
-	string zip_code;
-
-	TiXmlNode* street_node = address_node->FirstChild();
-	assert(street_node != 0);
-	street_address = street_node->FirstChild()->Value();
-	
-	TiXmlNode* city_node = street_node->NextSibling();
-	assert(city_node != 0);
-	city = city_node->FirstChild()->Value();
-	
-	TiXmlNode* state_node = city_node->NextSibling();
-	assert(state_node != 0);
-	state = state_node->FirstChild()->Value();
-	
-	TiXmlNode* zip_code_node = state_node->NextSibling();
-	assert(zip_code_node != 0);
-	zip_code = zip_code_node->FirstChild()->Value();
-
-	Address* address = new Address(street_address, city, state, zip_code);
-
-	return address;
-}
-
-Seat_Row* Venue_from_XML::Get_Seat_Row(TiXmlNode* seat_row_node)
+Seat_Row* Venue_From_XML::Get_Seat_Row(TiXmlNode* seat_row_node)
 {
 	string row_name;
 
@@ -84,16 +74,26 @@ Seat_Row* Venue_from_XML::Get_Seat_Row(TiXmlNode* seat_row_node)
 	return row;
 }
 
-/*void Venue_from_XML::Get_Seats(TiXmlNode* seat_row_node)
+void Venue_From_XML::Add_Seat_Rows(Venue* venue)
+{
+
+}
+
+void Venue_From_XML::Add_Sections(Venue* venue)
+{
+
+}
+
+void Venue_From_XML::Get_Seats(TiXmlNode* seat_row_node)
 {
 	while (seat_row_node != 0)
 	{
 		Get_Seat_Row(seat_row_node);
 		seat_row_node = seat_row_node->NextSibling();
 	}
-}*/
+}
 
-Seat* Venue_from_XML::Get_Seat(TiXmlNode* seat_node, Seat_Row* row)
+Seat* Venue_From_XML::Get_Seat(TiXmlNode* seat_node, Seat_Row* row)
 {
 	string seat_number;
 	string section_name;

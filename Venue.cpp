@@ -2,17 +2,17 @@
 
 using namespace std;
 
-Venue::Venue(const string& venue_name_,
-    const Address address_) :
-    venue_name(venue_name_), address(address_), 
+Venue::Venue(const string& venue_name_, const Address address_) :
+    venue_name(venue_name_),
+	address(address_), 
     number_of_seat_rows(0), 
     number_of_sections(0)
 {}
 
-void Venue::Add_Seat_Row(const Seat_Row* seat_row)
+void Venue::Add_Seat_Row(const string& Row_Name, int Number_of_Seats)
 {
     assert(number_of_seat_rows < MAX_SEAT_ROWS - 1);
-    seat_rows[number_of_seat_rows++] = seat_row;
+    seat_rows[number_of_seat_rows++] = new Seat_Row(Row_Name, Number_of_Seats);
 }
 
 void Venue::Add_Section(const Section* section)

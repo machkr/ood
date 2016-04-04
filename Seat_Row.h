@@ -19,10 +19,13 @@ private:
     int  number_of_seats;
 
 public:
-    Seat_Row(const string& Row_Name);
+	Seat_Row(const string& Row_Name);
+    Seat_Row(const string& Row_Name, int Number_of_Seats);
+
     void Add_Seat(const Seat* new_seat);
     void Display() const;
 
+	string Row_Name() const { return row_name; };
     int Number_of_Seats() const { return number_of_seats; }
 
     const Seat* Get_Seat(int idx) const { return seats[idx]; };

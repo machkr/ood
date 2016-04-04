@@ -5,8 +5,13 @@
 using namespace std;
 
 Seat_Row::Seat_Row(const string& Row_Name) :
+	row_name(Row_Name),
+	number_of_seats(0)
+{}
+
+Seat_Row::Seat_Row(const string& Row_Name, int Number_of_Seats) :
     row_name(Row_Name),
-    number_of_seats(0)
+    number_of_seats(Number_of_Seats)
 {}
 
 void Seat_Row::Add_Seat(const Seat* new_seat)
@@ -21,7 +26,7 @@ void Seat_Row::Display() const
         << number_of_seats << " seats" << endl;
     for (int i = 0; i < number_of_seats; ++i)
     {
-        cout << "\t";		// Indent the Seat description
+        cout << "\t";			// Indent the Seat description
         seats[i]->Display();
     }
 }
@@ -33,5 +38,3 @@ const Seat* Seat_Row::Get_Seat_by_Number(int n) const
 
     return NULL;
 }
-
-    

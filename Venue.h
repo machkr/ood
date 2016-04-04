@@ -24,27 +24,15 @@ private:
     int number_of_sections;
 
 public:
-    Venue(const string& venue_name_,
-        const Address address_);
+    Venue(const string& venue_name_, const Address address_);
 
-    void Add_Seat_Row(const Seat_Row* seat_row);
-
+    void Add_Seat_Row(const string& Row_Name, int Number_of_Seats);
     void Add_Section(const Section* section);
-
-    int Capacity() const;     // Number of seats
-
+	int Capacity() const;
     void Display() const;
-
     void Display_All() const;
-
-    int Number_of_Seat_Rows() const
-    {
-        return number_of_seat_rows;
-    };
+    int Number_of_Seat_Rows() const { return number_of_seat_rows; };
 
     const Seat_Row* Get_Seat_Row(string Row_Name) const;
-    
     const Seat_Row* Get_Seat_Row(int index) const;
 };
-
-
