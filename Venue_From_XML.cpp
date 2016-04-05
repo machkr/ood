@@ -41,9 +41,7 @@ Venue* Venue_From_XML::Get_Venue_From_XML(string filename)
 
 	TiXmlNode* seat_row_node = address_node->NextSibling();							//Node - Seat Row
 	assert(seat_row_node != 0);
-	Seat_Row* seat_rows = Get_Seats(seat_row_node);
-
-	venue->
+	//Seat_Row* seat_rows = Get_Seats(seat_row_node);
 
 	return venue;																	//Return new venue
 }
@@ -82,7 +80,7 @@ Seat_Row* Venue_From_XML::Get_Seats(TiXmlNode* seat_row_node)
 
 	while (seat_row_node != 0)
 	{
-		seat_rows->Add_Get_Seat_Row(seat_row_node);
+		Get_Seat_Row(seat_row_node);
 		seat_row_node = seat_row_node->NextSibling();
 	}
 
@@ -109,7 +107,7 @@ Seat_Row* Venue_From_XML::Get_Seat_Row(TiXmlNode* seat_row_node)
 		seat_node = seat_node->NextSibling();										//Iterate
 	}
 
-	row->Number_of_Seats = number_of_seats;
+	number_of_seats = row->Number_of_Seats();
 	return row;
 }
 
