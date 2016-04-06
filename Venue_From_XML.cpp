@@ -76,7 +76,7 @@ Address* Venue_From_XML::Get_Address(TiXmlNode* address_node)
 
 Seat_Row* Venue_From_XML::Get_Seats(TiXmlNode* seat_row_node)
 {
-	Seat_Row* seat_rows;
+	Seat_Row* seat_rows = NULL;
 
 	while (seat_row_node != 0)
 	{
