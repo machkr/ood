@@ -15,6 +15,12 @@ void Venue::Add_Seat_Row(const string& Row_Name, int Number_of_Seats)
     seat_rows[number_of_seat_rows++] = new Seat_Row(Row_Name, Number_of_Seats);
 }
 
+void Venue::Add_Seat_Row(const Seat_Row* seat_row) 
+{
+    assert(number_of_seat_rows < MAX_SEAT_ROWS - 1);
+    seat_rows[number_of_seat_rows++] = seat_row;
+}
+
 void Venue::Add_Section(const Section* section)
 {
     assert(number_of_sections < MAX_SECTIONS - 1);

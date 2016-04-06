@@ -42,6 +42,58 @@ Venue* Venue_From_XML::Get_Venue_From_XML(string filename)
 	TiXmlNode* seat_row_node = address_node->NextSibling();							//Node - Seat Row
 	assert(seat_row_node != 0);
 	//Seat_Row* seat_rows = Get_Seats(seat_row_node);
+	
+    // Map to sort seats into sections
+	map<string, Section*> sections;
+
+    // Loop through seat_row nodes
+    do {
+        TiXmlNode* seat_row_name_node = seat_row_node->FirstChild();
+        string seat_row_name = seat_row_name_node->FirstChild()->Value();
+        
+        int number_of_seats = 0;
+        Seat_Row* seat_row = new Seat_Row(seat_row_name);
+        
+        // Loop through seats
+        for (TiXmlNode* seat_node = seat_row_name_node->NextSibling(); 
+                seat_node; 
+                seat_node = seat_node->NextSibling(), number_of_seats++) 
+        {
+            int seat_number; 
+            TiXmlNode* seat_num_node = seat_node->FirstChild();
+            istringstream(seat_num_node->FirstChild()->Value()) >> seat_number;
+            Seat* seat = new Seat(seat_number, seat_row);
+
+            seat_row->Add_Seat(seat);            
+
+            TiXmlNode* section_node = seat_num_node->NextSibling();
+            string section_name = section_node->FirstChild()->Value();
+
+            // If section exists, add the seat
+            // if not, create section and add seat
+            if (sections.find(section_name) != sections.end()) 
+            {
+                sections[section_name]->Add_Seat(seat);
+            } 
+            else 
+            {
+                sections[section_name] = new Section(section_name); 
+                sections[section_name]->Add_Seat(seat);
+            }
+
+        }
+
+        venue->Add_Seat_Row(seat_row);
+        seat_row_node = seat_row_node->NextSibling();
+
+    } while (seat_row_node);
+
+    // Put sections into venue
+    map<string, Section*>::iterator it;
+    for (it = sections.begin(); it != sections.end(); it++)
+    {
+       venue->Add_Section(it->second);
+    } 
 
 	return venue;																	//Return new venue
 }
