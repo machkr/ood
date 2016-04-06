@@ -23,63 +23,25 @@ void Venue::Add_Section(const Section* section)
 
 void Venue::Display() const
 {
-    cout << venue_name << endl;
-    address.Display();
+	cout << "\nThe new venue:\n" << venue_name << endl;
+	address.Display();
 }
 
 void Venue::Display_All() const
 {
-	cout << "\nThe new venue:\n" << venue_name << endl;
-	address.Display();
-    
+    Display(); 
 	cout << endl << "All Seat Rows:" << endl;
 
 	for (int i = 0; i < number_of_seat_rows; i++) 
     {
-        cout << "Row " << seat_rows[i]->Get_Seat_Row_Name() << " Seats 1 - " <<
-            seat_rows[i]->Number_of_Seats() << "\n";
+        seat_rows[i]->Display();
     }
 
 	cout << endl << "Seating Sections:";
 
     for (int i = 0; i < number_of_sections; i++) 
     {
-        cout << "\nSection " << sections[i]->Get_Section_Name() << "\n";
-
-        // Sort seats by Row, put into a map
-        map<string, Seat_Row*> rows;
-        const Section* s = sections[i];
-        for (int j = 0; j < s->Number_of_Seats(); j++)
-        {
-            const string row_name = s->Get_Seat(j)->Get_Seat_Row()->Get_Seat_Row_Name();
-            
-            // If row is in map, add seat to row
-            // Else, add a new row to map
-            if (rows.find(row_name) != rows.end()) 
-            {
-                rows[row_name]->Add_Seat(s->Get_Seat(j));
-            } 
-            else
-            {
-                rows[row_name] = new Seat_Row(row_name);
-                rows[row_name]->Add_Seat(s->Get_Seat(j));
-            }
-        }
-        
-        // Iterate through map
-        map<string, Seat_Row*>::iterator it;
-        for (it = rows.begin(); it != rows.end(); it++) 
-        {
-            Seat_Row* row = it->second;   	
-            cout << "Row " << it->first << " Seats " << 
-                row->Get_Seat(0)->Get_Seat_Number() << " - " <<
-                row->Get_Seat(row->Number_of_Seats() - 1)->Get_Seat_Number() << "\n";
-        }
-        
-        // Destroy map
-        for (it = rows.begin(); it != rows.end(); it++) 
-            delete it->second;
-
+        sections[i]->Display();
     }
     cout << "\n";
 }

@@ -1,0 +1,36 @@
+In file included from Venue_From_User.cpp:5:
+In file included from Venue_From_User.cpp:5:
+./Venue_From_User.h:4:1: warning: 'static' is not permitted on a declaration of a type [-Wmissing-declarations]
+./Venue_From_User.h:4:1: warning: 'static' is not permitted on a declaration of a type [-Wmissing-declarations]
+static class Venue_From_User
+^
+static class Venue_From_User
+^
+1 warning generated.
+1 warning generated.
+Venue_From_XML.cpp:87:9: Venue_From_XML.cpp:87:9: warning: warning: variable 'seat_rows' is uninitialized when used here [-Wuninitialized]
+variable 'seat_rows' is uninitialized when used here [-Wuninitialized]
+        return seat_rows;
+               ^~~~~~~~~
+        return seat_rows;
+               ^~~~~~~~~
+Venue_From_XML.cpp:79:Venue_From_XML.cpp:79:21: note: initialize the variable 'seat_rows' to silence this warning
+21: note: initialize the variable 'seat_rows' to silence this warning
+        Seat_Row* seat_rows;
+                           ^
+        Seat_Row* seat_rows;
+                           ^
+                            = NULL
+                            = NULL
+1 warning generated.
+1 warning generated.
+In file included from main.cpp:6:
+In file included from main.cpp:6:
+./Venue_From_User.h:4:1: warning: 'static' is not permitted on a declaration of a type [-Wmissing-declarations]
+./Venue_From_User.h:4:1: warning: 'static' is not permitted on a declaration of a type [-Wmissing-declarations]
+static class Venue_From_User
+^
+static class Venue_From_User
+^
+1 warning generated.
+1 warning generated.

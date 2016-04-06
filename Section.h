@@ -1,5 +1,11 @@
 #pragma once
 #include <string>
+#include <iostream>
+#include <string>
+#include <map>
+#include <iterator>
+#include <cassert>
+#include "Seat_Row.h"
 #include "Seat.h" 
 
 using namespace std;
