@@ -4,7 +4,7 @@
 #include "Venue.h"
 #include "tinyxml.h"
 #include "Venue_From_User.h"
-#include "Venue_From_Xml.h"
+#include "Venue_From_XML.h"
 
 using namespace std;
 
