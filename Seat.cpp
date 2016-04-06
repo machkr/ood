@@ -1,6 +1,5 @@
 #include "Seat.h"		// NOT FULLY FUNCTIONAL - IN PROGRESS
-#include "Seat_Row.h"
-#include "Section.h"
+
 using namespace std;
 
 Seat::Seat(int Seat_Number, Seat_Row* Row) :

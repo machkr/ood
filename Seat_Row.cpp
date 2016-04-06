@@ -1,7 +1,5 @@
-#include <iostream>
-#include <string>
-#include <cassert>
 #include "Seat_Row.h"
+
 using namespace std;
 
 Seat_Row::Seat_Row(const string& Row_Name) :
