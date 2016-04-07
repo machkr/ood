@@ -1,4 +1,4 @@
-#include "Seat.h"		// NOT FULLY FUNCTIONAL - IN PROGRESS
+#include "Seat.h"
 
 using namespace std;
 
@@ -36,5 +36,6 @@ const Seat_Row* Seat::Get_Seat_Row() const
 
 void Seat::Display() const
 {
-	cout << "Row: " <<  "\tSeat: " << seat_number << "\tSection: " << section;
+	cout << "Row " << row->Get_Seat_Row_Name() << " Seat " << 
+        seat_number << " Section " << section->Get_Section_Name() << "\n";
 }
