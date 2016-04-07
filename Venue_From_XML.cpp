@@ -1,6 +1,3 @@
-#include <iostream>
-#include "tinyxml.h"
-#include "Venue.h"
 #include "Venue_From_XML.h"
 
 using namespace std;
@@ -126,7 +123,7 @@ Address* Venue_From_XML::Get_Address(TiXmlNode* address_node)
 	return address;																	//Return new address
 }
 
-Seat_Row* Venue_From_XML::Get_Seats(TiXmlNode* seat_row_node)
+/*Seat_Row* Venue_From_XML::Get_Seats(TiXmlNode* seat_row_node)
 {
 	Seat_Row* seat_rows = NULL;
 
@@ -137,7 +134,7 @@ Seat_Row* Venue_From_XML::Get_Seats(TiXmlNode* seat_row_node)
 	}
 
 	return seat_rows;
-}
+}/**/
 
 Seat_Row* Venue_From_XML::Get_Seat_Row(TiXmlNode* seat_row_node)
 {

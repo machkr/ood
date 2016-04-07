@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include "Section.h"
 #include "Venue.h"
 
 class Venue_From_User
