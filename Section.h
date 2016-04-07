@@ -20,18 +20,18 @@ class Section
 {
 private:
     string section_name; 
-    const Seat* seats[MAX_SEATS_PER_SECTION];
+    Seat* seats[MAX_SEATS_PER_SECTION];
     int number_of_seats;
   
 
 public:
     Section(const string& section_name);
-    void Add_Seat(const Seat* new_seat);
+    void Add_Seat(Seat* new_seat);
     void Display() const;
     
     int Number_of_Seats() const { return number_of_seats; }
     
-    const Seat* Get_Seat(int idx) const { return seats[idx]; };
+    Seat* Get_Seat(int idx) const { return seats[idx]; };
     
     string Get_Section_Name() const { return section_name; };
 };
