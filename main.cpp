@@ -4,6 +4,8 @@
 #include "Venue_From_User.h"
 #include "Venue_From_XML.h"
 
+// Test comment
+
 using namespace std;
 
 int main()
