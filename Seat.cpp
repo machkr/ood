@@ -31,9 +31,6 @@ const Seat_Row* Seat::Get_Seat_Row() const
     return row;
 }
 
-/*Seat::~Seat()
-{}*/
-
 void Seat::Display() const
 {
 	cout << "Row " << row->Get_Seat_Row_Name() << " Seat " << 
