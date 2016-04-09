@@ -1,7 +1,3 @@
-#include <iostream>
-#include <string>
-#include "Section.h"
-#include "Venue.h"
 #include "Venue_From_User.h"
 
 using namespace std;

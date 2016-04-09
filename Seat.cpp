@@ -1,6 +1,5 @@
-#include "Seat.h"		// NOT FULLY FUNCTIONAL - IN PROGRESS
-#include "Seat_Row.h"
-#include "Section.h"
+#include "Seat.h"
+
 using namespace std;
 
 Seat::Seat(int Seat_Number, Seat_Row* Row) :
@@ -24,7 +23,7 @@ Section* Seat::Get_Section()
 void Seat::Set_Seat_Row(Seat_Row* new_seat_row)
 {
 	row = new_seat_row;
-	row_name = new_seat_row->Row_Name;
+	row_name = new_seat_row->Row_Name();
 }
 
 const Seat_Row* Seat::Get_Seat_Row() const
@@ -32,10 +31,8 @@ const Seat_Row* Seat::Get_Seat_Row() const
     return row;
 }
 
-/*Seat::~Seat()
-{}*/
-
 void Seat::Display() const
 {
-	cout << "Row: " <<  "\tSeat: " << seat_number << "\tSection: " << section;
+	cout << "Row " << row->Get_Seat_Row_Name() << " Seat " << 
+        seat_number << " Section " << section->Get_Section_Name() << "\n";
 }

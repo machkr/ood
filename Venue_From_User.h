@@ -1,7 +1,10 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include "Section.h"
 #include "Venue.h"
 
-static class Venue_From_User
+class Venue_From_User
 {
 public:
 	static Venue* Get_Venue_From_User();

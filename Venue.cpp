@@ -15,6 +15,12 @@ void Venue::Add_Seat_Row(const string& Row_Name, int Number_of_Seats)
     seat_rows[number_of_seat_rows++] = new Seat_Row(Row_Name, Number_of_Seats);
 }
 
+void Venue::Add_Seat_Row(const Seat_Row* seat_row) 
+{
+    assert(number_of_seat_rows < MAX_SEAT_ROWS - 1);
+    seat_rows[number_of_seat_rows++] = seat_row;
+}
+
 void Venue::Add_Section(const Section* section)
 {
     assert(number_of_sections < MAX_SECTIONS - 1);
@@ -23,70 +29,22 @@ void Venue::Add_Section(const Section* section)
 
 void Venue::Display() const
 {
-    /*cout << name << endl;
-    address->Display();
-    for (int i = 0; i < number_of_seat_rows; ++i)
-    {
-        const Seat_Row* row = seat_rows[i];
-        row->Display();
-    }*/
+	cout << "\nThe new venue:\n" << venue_name << endl;
+	address.Display();
 }
 
 void Venue::Display_All() const
 {
-	cout << "\nThe new venue:\n" << venue_name << endl;
-	address.Display();
-    
-	cout << endl << "All Seat Rows:" << endl;
-
+    Display(); 
+    cout << "\n";
 	for (int i = 0; i < number_of_seat_rows; i++) 
     {
-        cout << "Row " << seat_rows[i]->Get_Seat_Row_Name() << " Seats 1 - " <<
-            seat_rows[i]->Number_of_Seats() << "\n";
+        for (int j = 0; j < seat_rows[i]->Number_of_Seats(); j++)
+        {
+            seat_rows[i]->Get_Seat(j)->Display();
+        }
     }
 
-	cout << endl << "Seating Sections:";
-
-    for (int i = 0; i < number_of_sections; i++) 
-    {
-        cout << "\nSection " << sections[i]->Get_Section_Name() << "\n";
-
-        // Sort seats by Row, put into a map
-        map<string, Seat_Row*> rows;
-        const Section* s = sections[i];
-        for (int j = 0; j < s->Number_of_Seats(); j++)
-        {
-            const string row_name = s->Get_Seat(j)->Get_Seat_Row()->Get_Seat_Row_Name();
-            
-            // If row is in map, add seat to row
-            // Else, add a new row to map
-            if (rows.find(row_name) != rows.end()) 
-            {
-                rows[row_name]->Add_Seat(s->Get_Seat(j));
-            } 
-            else
-            {
-                rows[row_name] = new Seat_Row(row_name);
-                rows[row_name]->Add_Seat(s->Get_Seat(j));
-            }
-        }
-        
-        // Iterate through map
-        map<string, Seat_Row*>::iterator it;
-        for (it = rows.begin(); it != rows.end(); it++) 
-        {
-            Seat_Row* row = it->second;   	
-            cout << "Row " << it->first << " Seats " << 
-                row->Get_Seat(0)->Get_Seat_Number() << " - " <<
-                row->Get_Seat(row->Number_of_Seats() - 1)->Get_Seat_Number() << "\n";
-        }
-        
-        // Destroy map
-        for (it = rows.begin(); it != rows.end(); it++) 
-            delete it->second;
-
-    }
-    cout << "\n";
 }
 
 // Return number of seats
