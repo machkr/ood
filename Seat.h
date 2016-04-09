@@ -17,9 +17,7 @@ class Seat
 private:
 	int seat_number;
 	const Seat_Row* row;
-	string row_name;
 	Section* section;
-	string section_name;
 
 public:
     Seat(int Seat_Number, Seat_Row* Row);
