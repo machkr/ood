@@ -23,7 +23,6 @@ Section* Seat::Get_Section()
 void Seat::Set_Seat_Row(Seat_Row* new_seat_row)
 {
 	row = new_seat_row;
-	row_name = new_seat_row->Row_Name();
 }
 
 const Seat_Row* Seat::Get_Seat_Row() const

@@ -2,8 +2,13 @@
 
 using namespace std;
 
-Venue* Venue_From_XML::Get_Venue_From_XML(string filename)
+Venue* Venue_From_XML::Get_Venue_From_XML()
 {
+	string filename;
+
+	cout << "Please enter the XML filename you would like to input: ";
+	getline(cin, filename);
+
 	TiXmlDocument doc(filename);
 	bool loadOkay = doc.LoadFile();
 

@@ -6,7 +6,7 @@
 class Venue_From_XML
 {
 public:
-	static Venue* Get_Venue_From_XML(string filename);
+	static Venue* Get_Venue_From_XML();
 
 private:
 	static Address* Get_Address(TiXmlNode* address_node);
