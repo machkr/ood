@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Menu.h" //We'll need this when we create a menu.
+#include "Menu.h"
 #include "Venue.h"
 
 enum Command_States { Initial, State_Selected, Done};
