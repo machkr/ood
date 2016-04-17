@@ -41,13 +41,13 @@ void Command_Processor::Process_Commands(Venue** venues_, int* nr_venues_)
 	{
 		if (command_state == Venue_Selected)
 		{
-			cout << "Selected venue is " << selected_venue->Name() << endl;
+			cout << "Selected venue is " << selected_venue->Venue_Name() << endl;
 		}
 		const string* cmd = menus[command_state]->Get_Command();
 
 		switch (command_state)
 		{
-		case Initial: Process_Command_0(*cmd);
+		case Initial: Process_Command_1(*cmd);
 			break;
 
 		case Venue_Selected: Process_Command_1(*cmd);

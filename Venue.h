@@ -33,6 +33,7 @@ public:
     void Display() const;
     void Display_All() const;
     int Number_of_Seat_Rows() const { return number_of_seat_rows; };
+	string Venue_Name() const { return venue_name; };
 
     const Seat_Row* Get_Seat_Row(string Row_Name) const;
     const Seat_Row* Get_Seat_Row(int index) const;
