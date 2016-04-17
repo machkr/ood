@@ -2,9 +2,9 @@
 #include "Command_Processor.h"
 using namespace std;
 
-State** Command_Processor::venues = 0;
+Venue** Command_Processor::venues = 0;
 int* Command_Processor::nr_venues = 0;
-State* Command_Processor::selected_venue = 0;
+Venue* Command_Processor::selected_venue = 0;
 
 Command_States Command_Processor::command_state = Initial;
 
@@ -18,7 +18,7 @@ void Command_Processor::Create_Menus()
 	menu->Add_Command("Quit");
 	menus[0] = menu;
 
-	// Menu for State Selected
+	// Menu for Venue Selected
 	menu = new Menu("Enter command number");
 	menu->Add_Command("Display Venue")
 	menu->Add_Command("Select Show");
@@ -27,7 +27,7 @@ void Command_Processor::Create_Menus()
 	menus[1] = menu;
 }
 
-void Command_Processor::Process_Commands(State** venues_,
+void Command_Processor::Process_Commands(Venue** venues_,
 	int* nr_venues_)
 {
 	cout << "Process commands starting\n";
