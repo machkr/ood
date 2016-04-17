@@ -3,7 +3,7 @@
 #include "Menu.h"
 #include "Venue.h"
 
-enum Command_States { Initial, State_Selected, Done};
+enum Command_States { Initial, Venue_Selected, Done};
 using namespace std;
 
 class Command_Processor
