@@ -6,9 +6,7 @@ using namespace std;
 Venue** Command_Processor::venues = 0;
 int* Command_Processor::nr_venues = 0;
 Venue* Command_Processor::selected_venue = 0;
-
 Command_States Command_Processor::command_state = Initial;
-
 Menu* Command_Processor::menus[NR_CMD_STATES];
 
 void Command_Processor::Create_Menus()
@@ -50,13 +48,12 @@ void Command_Processor::Process_Commands(Venue** venues_, int* nr_venues_)
 		case Initial: Process_Command_1(*cmd);
 			break;
 
-		case Venue_Selected: Process_Command_1(*cmd);
+		case Venue_Selected: Process_Command_2(*cmd);
 			break;
 
 		case Done:  break;      
 		}
 	}
-
 	cout << "Command_Processor exiting\n";
 }
 
@@ -71,8 +68,8 @@ void Command_Processor::Process_Command_1(const string& cmd)
 		command_state = Venue_Selected;
 	}
 	else
-		//Quit
 	{
+		//Quit
 		Output_XML();
 		command_state = Done;
 	}
@@ -120,8 +117,8 @@ void Command_Processor::Output_XML()
 		cout << "Failed to open file for output\n";
 		return;
 	}
-
 	outfile << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+	outfile << "<USA>\n";
 	for (int i = 0; i < *nr_venues; ++i)
 	{
 		venues[i]->Output_XML(outfile);
