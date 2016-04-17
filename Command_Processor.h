@@ -11,7 +11,7 @@ class Command_Processor
 public:
 	static void Process_Commands(Venue** venues_, int* nr_venues_);
 	
-};
+
 private:
 	static const int NR_CMD_STATES = (int)Done + 1;
 	static Command_States command_state;
@@ -27,3 +27,4 @@ private:
 	static void Output_XML()
 
 	~Command_Processor();
+};
