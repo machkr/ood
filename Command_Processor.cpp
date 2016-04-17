@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Command_Processor.h"
+
 using namespace std;
 
 Venue** Command_Processor::venues = 0;
@@ -20,15 +21,14 @@ void Command_Processor::Create_Menus()
 
 	// Menu for Venue Selected
 	menu = new Menu("Enter command number");
-	menu->Add_Command("Display Venue")
+	menu->Add_Command("Display Venue");
 	menu->Add_Command("Select Show");
 	menu->Add_Command("Change Venue");
 	menu->Add_Command("Quit");
 	menus[1] = menu;
 }
 
-void Command_Processor::Process_Commands(Venue** venues_,
-	int* nr_venues_)
+void Command_Processor::Process_Commands(Venue** venues_, int* nr_venues_)
 {
 	cout << "Process commands starting\n";
 
@@ -41,17 +41,16 @@ void Command_Processor::Process_Commands(Venue** venues_,
 	{
 		if (command_state == Venue_Selected)
 		{
-			cout << "Selected venue is "
-				<< selected_venue->Name() << endl;
+			cout << "Selected venue is " << selected_venue->Name() << endl;
 		}
 		const string* cmd = menus[command_state]->Get_Command();
 
 		switch (command_state)
 		{
-		case Initial:   Process_Command_0(*cmd);
+		case Initial: Process_Command_0(*cmd);
 			break;
 
-		case Venue_Selected:    Process_Command_1(*cmd);
+		case Venue_Selected: Process_Command_1(*cmd);
 			break;
 
 		case Done:  break;      
@@ -85,14 +84,12 @@ void Command_Processor::Process_Command_2(const string& cmd)
 	{
 		//Display Venue
 	}
-
 	else if (cmd == "Select Show")
 	{
 		//Select Show
 	}
 	else if (cmd == "Change Venue")
 	{
-	
 		//Change Venue
 	}
 	else
@@ -101,35 +98,34 @@ void Command_Processor::Process_Command_2(const string& cmd)
 		Output_XML();
 		command_state = Done;
 	}
+}
 
+void Command_Processor::Select_Venue()
+{
+	//Select Venue method
+}
 
-	void Command_Processor::Select_Venue()
+void Command_Processor::Select_Show()
+{
+	//Select Show method
+}
+
+//Not sure if the below is needed, we'll see. 
+void Command_Processor::Output_XML()
+{
+	ofstream outfile;
+	outfile.open("venues2.xml");
+	if (!outfile.is_open())
 	{
-		//Select Venue method
+		cout << "Failed to open file for output\n";
+		return;
 	}
 
-	void Command_Processor::Select_Show()
+	outfile << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+	for (int i = 0; i < *nr_venues; ++i)
 	{
-		//Select Show method
+		states[i]->Output_XML(outfile);
 	}
-
-	//Not sure if the below is needed, we'll see. 
-	void Command_Processor::Output_XML()
-	{
-		ofstream outfile;
-		outfile.open("venues2.xml");
-		if (!outfile.is_open())
-		{
-			cout << "Failed to open file for output\n";
-			return;
-		}
-
-		outfile << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-		for (int i = 0; i < *nr_venues; ++i)
-		{
-			states[i]->Output_XML(outfile);
-		}
-		outfile.close();
-		cout << "File venues2.xml written\n";
-	}
-
+	outfile.close();
+	cout << "File venues2.xml written\n";
+}
