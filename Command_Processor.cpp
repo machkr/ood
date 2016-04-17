@@ -124,7 +124,7 @@ void Command_Processor::Output_XML()
 	outfile << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 	for (int i = 0; i < *nr_venues; ++i)
 	{
-		states[i]->Output_XML(outfile);
+		venues[i]->Output_XML(outfile);
 	}
 	outfile.close();
 	cout << "File venues2.xml written\n";
