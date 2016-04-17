@@ -39,7 +39,7 @@ void Command_Processor::Process_Commands(Venue** venues_,
 
 	while (command_state != Done)
 	{
-		if (command_state == State_Selected)
+		if (command_state == Venue_Selected)
 		{
 			cout << "Selected venue is "
 				<< selected_venue->Name() << endl;
@@ -117,7 +117,7 @@ void Command_Processor::Process_Command_2(const string& cmd)
 	void Command_Processor::Output_XML()
 	{
 		ofstream outfile;
-		outfile.open("states2.xml");
+		outfile.open("venues2.xml");
 		if (!outfile.is_open())
 		{
 			cout << "Failed to open file for output\n";
@@ -125,13 +125,11 @@ void Command_Processor::Process_Command_2(const string& cmd)
 		}
 
 		outfile << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-		outfile << "<USA>\n";
-		for (int i = 0; i < *nr_states; ++i)
+		for (int i = 0; i < *nr_venues; ++i)
 		{
 			states[i]->Output_XML(outfile);
 		}
-		outfile << "</USA>\n";
 		outfile.close();
-		cout << "File states2.xml written\n";
+		cout << "File venues2.xml written\n";
 	}
 
