@@ -118,7 +118,7 @@ void Command_Processor::Select_Venue()
 	}
 
 	// Should never reach this point.
-	cout << "Error in Command_Processor::Select_State()\n";
+	cout << "Error in Command_Processor::Select_Venue()\n";
 }
 
 void Command_Processor::Select_Show()
