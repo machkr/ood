@@ -108,7 +108,6 @@ void Command_Processor::Select_Venue()
 
 	const string* venue_name = menu->Get_Command();
 
-	// Find state with this name
 	for (int i = 0; i < *nr_venues; ++i)
 	{
 		if (venues[i]->Venue_Name() == *venue_name)
