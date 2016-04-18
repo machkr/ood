@@ -125,6 +125,7 @@ void Command_Processor::Select_Venue()
 void Command_Processor::Select_Show()
 {
 	//Select Show method
+	cout << "Select Show Command Here";
 }
 
 //Not sure if the below is needed, we'll see. 
