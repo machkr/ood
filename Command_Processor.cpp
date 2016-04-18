@@ -39,7 +39,7 @@ void Command_Processor::Process_Commands(Venue** venues_, int* nr_venues_)
 	{
 		if (command_state == Venue_Selected)
 		{
-			cout << "Selected venue is " << selected_venue->Venue_Name() << endl;
+			cout << "You have selected " << selected_venue->Venue_Name() << "." << endl;
 		}
 
 		const string* cmd = menus[command_state]->Get_Command();
@@ -52,7 +52,8 @@ void Command_Processor::Process_Commands(Venue** venues_, int* nr_venues_)
 		case Venue_Selected: Process_Command_2(*cmd);
 			break;
 
-		case Done:  break;      
+		case Done:  
+			break;      
 		}
 	}
 	cout << "Command Processor is exiting\n";
@@ -83,7 +84,7 @@ void Command_Processor::Process_Command_2(const string& cmd)
 	}
 	else if (cmd == "Select Show")
 	{
-		//Select Show
+		Select_Show();
 	}
 	else if (cmd == "Change Venue")
 	{
