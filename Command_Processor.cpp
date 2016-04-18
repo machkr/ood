@@ -79,7 +79,7 @@ void Command_Processor::Process_Command_2(const string& cmd)
 {
 	if (cmd == "Display Venue")
 	{
-		//Display Venue
+		selected_venue->Display;
 	}
 	else if (cmd == "Select Show")
 	{
@@ -87,7 +87,7 @@ void Command_Processor::Process_Command_2(const string& cmd)
 	}
 	else if (cmd == "Change Venue")
 	{
-		//Change Venue
+		command_state = Initial;
 	}
 	else
 	{
