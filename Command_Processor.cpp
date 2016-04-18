@@ -29,7 +29,7 @@ void Command_Processor::Create_Menus()
 
 void Command_Processor::Process_Commands(Venue** venues_, int* nr_venues_)
 {
-	cout << "Process commands starting\n";
+	cout << "The command processor is starting.\n";
 
 	venues = venues_;
 	nr_venues = nr_venues_;
@@ -57,7 +57,7 @@ void Command_Processor::Process_Commands(Venue** venues_, int* nr_venues_)
 			break;      
 		}
 	}
-	cout << "Command Processor is exiting\n";
+	cout << "The command processor is exiting.\n";
 }
 
 
@@ -65,7 +65,6 @@ void Command_Processor::Process_Command_1(const string& cmd)
 {
 	if (cmd == "Select Venue")
 	{	
-		//Select Venue
 		Select_Venue();
 		command_state = Venue_Selected;
 	}

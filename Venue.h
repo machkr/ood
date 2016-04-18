@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <cassert>
+#include <fstream>
 #include <iterator>
 #include <map>
 #include "Address.h"
@@ -37,4 +38,6 @@ public:
 
     const Seat_Row* Get_Seat_Row(string Row_Name) const;
     const Seat_Row* Get_Seat_Row(int index) const;
+
+	void Output_XML(ofstream& outfile) const;
 };

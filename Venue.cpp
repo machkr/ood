@@ -74,3 +74,43 @@ const Seat_Row* Venue::Get_Seat_Row(int index) const
 {
     return seat_rows[index];
 }
+
+void Venue::Output_XML(ofstream& outfile) const
+{
+	outfile << "\t<venue>\n";
+	outfile << "\t\t<name>\n";
+	outfile << "\t\t\t" << venue_name << "\n";
+	outfile << "\t\t</name>\n";
+
+	outfile << "\t\t<address>\n";
+	outfile << "\t\t\t<street>\n";
+	outfile << "\t\t\t\t" << address.Street_Address() << "\n";
+	outfile << "\t\t\t</street>\n";
+	outfile << "\t\t\t<city>\n";
+	outfile << "\t\t\t\t" << address.City() << "\n";
+	outfile << "\t\t\t</city>\n";
+	outfile << "\t\t\t<state>\n";
+	outfile << "\t\t\t\t" << address.State() << "\n";
+	outfile << "\t\t\t</state>\n";
+	outfile << "\t\t\t<zip_code>\n";
+	outfile << "\t\t\t\t" << address.ZIP_Code() << "\n";
+	outfile << "\t\t\t</zip_code>\n";
+	outfile << "\t\t</address>\n";
+
+	list<City>::const_iterator c;
+	c = cities.begin();
+	while (c != cities.end())
+	{
+		if (c->Name() == capital)
+		{
+			++c;
+			continue;
+		}
+		c->Output_XML(outfile);
+		++c;
+	}
+
+	cout << endl;
+	outfile << "\t</venue>\n";
+
+}

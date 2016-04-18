@@ -26,7 +26,7 @@ private:
 	static void Select_Venue();
 	static void Select_Show();
 
-	static Venue** Venues;
+	static Venue** venues;
 	static int* nr_venues;
 	static Venue* selected_venue;
 };
