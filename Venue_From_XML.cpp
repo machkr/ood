@@ -2,10 +2,9 @@
 
 using namespace std;
 
-Venue** Venue_From_XML::Get_Venue_From_XML()
+void Venue_From_XML::Get_Venue_From_XML()
 {
 	string filename;
-	int count = 0;
 
 	cout << "Please enter the XML filename you would like to input: ";
 	getline(cin, filename);
@@ -102,8 +101,8 @@ Venue** Venue_From_XML::Get_Venue_From_XML()
 	return venue;																	//Return new venue
 	*/
 
-	Venue** venue = new Venue*[1000];
-	int i = 0;
+	venue = new Venue*[1000];
+	i = 0;
 	for (TiXmlNode* venue_node = venue_file_node->FirstChild(); venue_node != NULL; venue_node = venue_node->NextSibling(), ++i)  //change
 	{
 		//string name = venue->Attribute ("name");
@@ -123,7 +122,7 @@ Venue** Venue_From_XML::Get_Venue_From_XML()
 		Address* address = Get_Address(address_node);									//Get address
 
 		venue[i] = new Venue(venue_name, *address);									//Create new venue
-		venue[count++] = new Venue;
+
 		TiXmlNode* seat_row_node = address_node->NextSibling();							//Node - Seat Row
 		assert(seat_row_node != 0);
 		//Seat_Row* seat_rows = Get_Seats(seat_row_node);
@@ -180,8 +179,7 @@ Venue** Venue_From_XML::Get_Venue_From_XML()
 			venue[i]->Add_Section(it->second);
 		}
 
-	}
-	return venue;																	//Return new venue
+	}																	//Return new venue
 }
 
 Address* Venue_From_XML::Get_Address(TiXmlNode* address_node)
@@ -264,9 +262,4 @@ Seat* Venue_From_XML::Get_Seat(TiXmlNode* seat_node)
 
 	Seat* new_seat = new Seat(seat_number);											//Create new seat
 	return new_seat;																//Return new seat
-}
-
-int Venue_From_XML::Get_Count()
-{
-	return count;
 }
