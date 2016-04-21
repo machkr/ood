@@ -35,7 +35,7 @@ Seat* Seat_Row::Get_Seat_by_Number(int n) const
 
 void Seat_Row::Output_XML(std::ofstream& outfile) const
 {
-	outfile << "\t\t<seat row>\n";
+	outfile << "\t\t<seat_row>\n";
 	outfile << "\t\t\t<name>" << row_name << "</name>\n";
 
 	/*

@@ -8,6 +8,8 @@
 			<state>MA</state>
 			<zip_code>1420</zip_code>
 		</address>
+		<seat_row>
+			<name>A</name>
 			<seat>
 				<number>1</number>
 				<section>Front</section>
@@ -36,6 +38,9 @@
 				<number>7</number>
 				<section>Front</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>B</name>
 			<seat>
 				<number>1</number>
 				<section>Right</section>
@@ -64,6 +69,9 @@
 				<number>7</number>
 				<section>Left</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>C</name>
 			<seat>
 				<number>1</number>
 				<section>Right</section>
@@ -92,6 +100,9 @@
 				<number>7</number>
 				<section>Left</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>D</name>
 			<seat>
 				<number>1</number>
 				<section>Right</section>
@@ -120,6 +131,9 @@
 				<number>7</number>
 				<section>Left</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>E</name>
 			<seat>
 				<number>1</number>
 				<section>Right</section>
@@ -148,6 +162,9 @@
 				<number>7</number>
 				<section>Left</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>F</name>
 			<seat>
 				<number>1</number>
 				<section>Back</section>
@@ -176,6 +193,7 @@
 				<number>7</number>
 				<section>Back</section>
 			</seat>
+		</seat_row>
 	</venue>
 	<venue>
 		<name>Theater 2</name>
@@ -185,6 +203,8 @@
 			<state>FL</state>
 			<zip_code>33620</zip_code>
 		</address>
+		<seat_row>
+			<name>A</name>
 			<seat>
 				<number>1</number>
 				<section>Front</section>
@@ -201,6 +221,9 @@
 				<number>4</number>
 				<section>Front</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>B</name>
 			<seat>
 				<number>1</number>
 				<section>Right</section>
@@ -217,6 +240,9 @@
 				<number>4</number>
 				<section>Left</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>C</name>
 			<seat>
 				<number>1</number>
 				<section>Right</section>
@@ -233,6 +259,7 @@
 				<number>4</number>
 				<section>Left</section>
 			</seat>
+		</seat_row>
 	</venue>
 	<venue>
 		<name>Theater 3</name>
@@ -242,6 +269,8 @@
 			<state>FL</state>
 			<zip_code>33620</zip_code>
 		</address>
+		<seat_row>
+			<name>A</name>
 			<seat>
 				<number>1</number>
 				<section>Front</section>
@@ -258,6 +287,9 @@
 				<number>4</number>
 				<section>Front</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>B</name>
 			<seat>
 				<number>1</number>
 				<section>Right</section>
@@ -274,6 +306,9 @@
 				<number>4</number>
 				<section>Left</section>
 			</seat>
+		</seat_row>
+		<seat_row>
+			<name>C</name>
 			<seat>
 				<number>1</number>
 				<section>Right</section>
@@ -290,5 +325,6 @@
 				<number>4</number>
 				<section>Left</section>
 			</seat>
+		</seat_row>
 	</venue>
 </Venue_file>

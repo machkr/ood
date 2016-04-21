@@ -264,3 +264,8 @@ Seat* Venue_From_XML::Get_Seat(TiXmlNode* seat_node)
 	Seat* new_seat = new Seat(seat_number);											//Create new seat
 	return new_seat;																//Return new seat
 }
+
+int Venue_From_XML::Get_Count()
+{
+	return count;
+}
