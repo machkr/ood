@@ -100,12 +100,12 @@ void Venue::Output_XML(ofstream& outfile) const
 	for (int i = 0; i < number_of_seat_rows; i++)
 	{
 		
-		//seat_rows[i]->Output_XML(outfile);
+		seat_rows[i]->Output_XML(outfile);
 		for (int j = 0; j < seat_rows[i]->Number_of_Seats(); j++)
 		{
 			seat_rows[i]->Get_Seat(j)->Output_Xml(outfile);
 		}
-		//outfile << "\t\t</seat row>\n";
+		outfile << "\t\t</seat_row>\n";
 	}
 	cout << endl;
 	/*
