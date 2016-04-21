@@ -2,9 +2,10 @@
 
 using namespace std;
 
-Venue* Venue_From_XML::Get_Venue_From_XML()
+Venue** Venue_From_XML::Get_Venue_From_XML()
 {
 	string filename;
+	int count = 0;
 
 	cout << "Please enter the XML filename you would like to input: ";
 	getline(cin, filename);
@@ -25,6 +26,7 @@ Venue* Venue_From_XML::Get_Venue_From_XML()
 	TiXmlNode* venue_file_node = doc.FirstChild("venue_file");						//Node - Venue File
 	assert(venue_file_node != 0);
 
+	/* before change in venue
 	TiXmlNode* venue_node = venue_file_node->FirstChild();							//Node - Venue
 	assert(venue_node != 0);
 
@@ -98,6 +100,88 @@ Venue* Venue_From_XML::Get_Venue_From_XML()
     } 
 
 	return venue;																	//Return new venue
+	*/
+
+	Venue** venue = new Venue*[1000];
+	int i = 0;
+	for (TiXmlNode* venue_node = venue_file_node->FirstChild(); venue_node != NULL; venue_node = venue_node->NextSibling(), ++i)  //change
+	{
+		//string name = venue->Attribute ("name");
+
+		//Node - Venue
+		//assert(venue_node != 0);
+
+		TiXmlNode* name_node = venue_node->FirstChild();								//Node - Name
+		assert(name_node != 0);
+
+		TiXmlNode* name_text_node = name_node->FirstChild();							//Node - Venue Name
+		assert(name_text_node != 0);
+		string venue_name = name_text_node->Value();									//Get venue name
+
+		TiXmlNode* address_node = name_node->NextSibling();								//Node - Address
+		assert(address_node != 0);
+		Address* address = Get_Address(address_node);									//Get address
+
+		venue[i] = new Venue(venue_name, *address);									//Create new venue
+		venue[count++] = new Venue;
+		TiXmlNode* seat_row_node = address_node->NextSibling();							//Node - Seat Row
+		assert(seat_row_node != 0);
+		//Seat_Row* seat_rows = Get_Seats(seat_row_node);
+
+		// Map to sort seats into sections
+		map<string, Section*> sections;
+
+		// Loop through seat_row nodes
+		do {
+			TiXmlNode* seat_row_name_node = seat_row_node->FirstChild();
+			string seat_row_name = seat_row_name_node->FirstChild()->Value();
+
+			int number_of_seats = 0;
+			Seat_Row* seat_row = new Seat_Row(seat_row_name);
+
+			// Loop through seats
+			for (TiXmlNode* seat_node = seat_row_name_node->NextSibling();
+				seat_node;
+				seat_node = seat_node->NextSibling(), number_of_seats++)
+			{
+				int seat_number;
+				TiXmlNode* seat_num_node = seat_node->FirstChild();
+				istringstream(seat_num_node->FirstChild()->Value()) >> seat_number;
+				Seat* seat = new Seat(seat_number, seat_row);
+
+				seat_row->Add_Seat(seat);
+
+				TiXmlNode* section_node = seat_num_node->NextSibling();
+				string section_name = section_node->FirstChild()->Value();
+
+				// If section exists, add the seat
+				// if not, create section and add seat
+				if (sections.find(section_name) != sections.end())
+				{
+					sections[section_name]->Add_Seat(seat);
+				}
+				else
+				{
+					sections[section_name] = new Section(section_name);
+					sections[section_name]->Add_Seat(seat);
+				}
+
+			}
+
+			venue[i]->Add_Seat_Row(seat_row);
+			seat_row_node = seat_row_node->NextSibling();
+
+		} while (seat_row_node);
+
+		// Put sections into venue
+		map<string, Section*>::iterator it;
+		for (it = sections.begin(); it != sections.end(); it++)
+		{
+			venue[i]->Add_Section(it->second);
+		}
+
+	}
+	return venue;																	//Return new venue
 }
 
 Address* Venue_From_XML::Get_Address(TiXmlNode* address_node)
@@ -139,7 +223,7 @@ Address* Venue_From_XML::Get_Address(TiXmlNode* address_node)
 	}
 
 	return seat_rows;
-}/**/
+}*/
 
 Seat_Row* Venue_From_XML::Get_Seat_Row(TiXmlNode* seat_row_node)
 {
@@ -180,4 +264,9 @@ Seat* Venue_From_XML::Get_Seat(TiXmlNode* seat_node)
 
 	Seat* new_seat = new Seat(seat_number);											//Create new seat
 	return new_seat;																//Return new seat
+}
+
+int Venue_From_XML::Get_Count()
+{
+	return count;
 }

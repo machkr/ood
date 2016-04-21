@@ -1,4 +1,5 @@
 #include "Seat_Row.h"
+#include <string>
 
 using namespace std;
 
@@ -30,4 +31,21 @@ Seat* Seat_Row::Get_Seat_by_Number(int n) const
             if (n == seats[i]->Get_Seat_Number()) return seats[i];
 
     return NULL;
+}
+
+void Seat_Row::Output_XML(std::ofstream& outfile) const
+{
+	outfile << "\t\t<seat_row>\n";
+	outfile << "\t\t\t<name>" << row_name << "</name>\n";
+
+	/*
+	list<Seat>::const_iterator c;
+	c = s.begin();
+	while (c != s.end())
+	{
+		c->Output_Xml(outfile);
+		++c;
+	}*/
+
+	//outfile << "\t\t</seat row>\n";
 }

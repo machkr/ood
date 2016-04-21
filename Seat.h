@@ -28,4 +28,5 @@ public:
     const Seat_Row* Get_Seat_Row() const;
     void Display() const;
     int Get_Seat_Number() const { return seat_number; };
+	void Output_Xml(std::ofstream& outfile) const;
 };
