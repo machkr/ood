@@ -29,8 +29,18 @@ void Venue::Add_Section(const Section* section)
 
 void Venue::Display() const
 {
-	cout << "\nThe new venue:\n" << venue_name << endl;
+	cout /*<< "\nThe new venue:\n"*/ << venue_name << endl;
 	address.Display();
+/*	list<Seat_Row>::const_iterator s;
+	s = seatrows.begin();
+	while (s != seatrows.end())
+	{
+		cout << " ";
+		s->Display();
+		cout << endl;
+		++s;
+	}
+	cout << endl; edit*/
 }
 
 void Venue::Display_All() const
@@ -44,7 +54,7 @@ void Venue::Display_All() const
             seat_rows[i]->Get_Seat(j)->Display();
         }
     }
-
+	cout << endl;
 }
 
 // Return number of seats
@@ -78,39 +88,36 @@ const Seat_Row* Venue::Get_Seat_Row(int index) const
 void Venue::Output_XML(ofstream& outfile) const
 {
 	outfile << "\t<venue>\n";
-	outfile << "\t\t<name>\n";
-	outfile << "\t\t\t" << venue_name << "\n";
-	outfile << "\t\t</name>\n";
+	outfile << "\t\t<name>" << venue_name <<"</name>\n";
 
 	outfile << "\t\t<address>\n";
-	outfile << "\t\t\t<street>\n";
-	outfile << "\t\t\t\t" << address.Street_Address() << "\n";
-	outfile << "\t\t\t</street>\n";
-	outfile << "\t\t\t<city>\n";
-	outfile << "\t\t\t\t" << address.City() << "\n";
-	outfile << "\t\t\t</city>\n";
-	outfile << "\t\t\t<state>\n";
-	outfile << "\t\t\t\t" << address.State() << "\n";
-	outfile << "\t\t\t</state>\n";
-	outfile << "\t\t\t<zip_code>\n";
-	outfile << "\t\t\t\t" << address.ZIP_Code() << "\n";
-	outfile << "\t\t\t</zip_code>\n";
+	outfile << "\t\t\t<street>" << address.Street_Address() << "</street>\n";
+	outfile << "\t\t\t<city>" << address.City() << "</city>\n";
+	outfile << "\t\t\t<state>" << address.State() << "</state>\n";
+	outfile << "\t\t\t<zip_code>" << address.ZIP_Code() << "</zip_code>\n";
 	outfile << "\t\t</address>\n";
 
-	list<City>::const_iterator c;
-	c = cities.begin();
-	while (c != cities.end())
+	for (int i = 0; i < number_of_seat_rows; i++)
 	{
-		if (c->Name() == capital)
+		
+		//seat_rows[i]->Output_XML(outfile);
+		for (int j = 0; j < seat_rows[i]->Number_of_Seats(); j++)
 		{
-			++c;
-			continue;
+			seat_rows[i]->Get_Seat(j)->Output_Xml(outfile);
 		}
+		//outfile << "\t\t</seat row>\n";
+	}
+	cout << endl;
+	/*
+	list<Seat_Row>::const_iterator c;
+	c = seatrows.begin();
+	while (c != seatrows.end())
+	{
 		c->Output_XML(outfile);
 		++c;
 	}
-
-	cout << endl;
+	*/
+	//cout << endl;
 	outfile << "\t</venue>\n";
 
 }

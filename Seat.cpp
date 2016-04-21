@@ -35,3 +35,11 @@ void Seat::Display() const
 	cout << "Row " << row->Get_Seat_Row_Name() << " Seat " << 
         seat_number << " Section " << section->Get_Section_Name() << "\n";
 }
+
+void Seat::Output_Xml(std::ofstream& outfile) const
+{
+	outfile << "\t\t\t<seat>\n";
+	outfile << "\t\t\t\t<number>" << seat_number << "</number>\n";
+	outfile << "\t\t\t\t<section>" << section->Get_Section_Name() << "</section>\n";
+	outfile << "\t\t\t</seat>\n";
+}

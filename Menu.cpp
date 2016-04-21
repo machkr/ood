@@ -2,7 +2,7 @@
 #include <string>
 #include <cassert>
 #include "Menu.h"
-
+#include <sstream>
 using namespace std;
 
 Menu::Menu(const string& prompt_) : nr_commands(0), prompt(prompt_)
@@ -14,6 +14,12 @@ Menu::~Menu(void)
 	{
 		delete commands[i];
 	}
+}
+
+int str_to_int(string str) {
+	int i;
+	std::istringstream(str) >> i;
+	return i;
 }
 
 void Menu::Add_Command(const string& cmd)
@@ -38,7 +44,7 @@ const string* Menu::Get_Command(void) const
 		getline(cin, cmd);
 		try
 		{
-			choice = stoi(cmd);
+			choice = str_to_int(cmd);
 		}
 		catch (exception ex)
 		{

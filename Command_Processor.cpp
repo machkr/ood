@@ -13,13 +13,13 @@ Menu* Command_Processor::menus[NR_CMD_STATES];
 void Command_Processor::Create_Menus()
 {
 	// Menu for Initial command state
-	Menu* menu = new Menu("Enter command number");
+	Menu* menu = new Menu("Enter command number:\n");
 	menu->Add_Command("Select Venue");
 	menu->Add_Command("Quit");
 	menus[0] = menu;
 
 	// Menu for Venue Selected
-	menu = new Menu("Enter command number");
+	menu = new Menu("Enter command number:\n");
 	menu->Add_Command("Display Venue");
 	menu->Add_Command("Select Show");
 	menu->Add_Command("Change Venue");
@@ -40,11 +40,10 @@ void Command_Processor::Process_Commands(Venue** venues_, int* nr_venues_)
 	{
 		if (command_state == Venue_Selected)
 		{
-			cout << "You have selected " << selected_venue->Venue_Name() << "." << endl;
+			cout << "selected venue is " << selected_venue->Venue_Name() << "." << endl;
 		}
 
 		const string* cmd = menus[command_state]->Get_Command();
-
 		switch (command_state)
 		{
 		case Initial: Process_Command_1(*cmd);
@@ -80,11 +79,13 @@ void Command_Processor::Process_Command_2(const string& cmd)
 {
 	if (cmd == "Display Venue")
 	{
-		selected_venue->Display;
+		selected_venue->Display_All();
+		
 	}
 	else if (cmd == "Select Show")
 	{
 		Select_Show();
+			cout << endl;
 	}
 	else if (cmd == "Change Venue")
 	{
@@ -107,7 +108,7 @@ void Command_Processor::Select_Venue()
 	}
 
 	const string* venue_name = menu->Get_Command();
-
+	//find venue with this name
 	for (int i = 0; i < *nr_venues; ++i)
 	{
 		if (venues[i]->Venue_Name() == *venue_name)
@@ -139,11 +140,12 @@ void Command_Processor::Output_XML()
 		return;
 	}
 	outfile << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-	outfile << "<USA>\n";
+	outfile << "<Venue_file>\n";
 	for (int i = 0; i < *nr_venues; ++i)
 	{
 		venues[i]->Output_XML(outfile);
 	}
+	outfile << "</Venue_file>\n";
 	outfile.close();
 	cout << "File venues2.xml written\n";
 }
