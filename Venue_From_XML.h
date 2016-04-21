@@ -6,6 +6,7 @@
 class Venue_From_XML
 {
 public:
+	
 	static Venue** Get_Venue_From_XML();
 
 private:

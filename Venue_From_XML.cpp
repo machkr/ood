@@ -5,6 +5,7 @@ using namespace std;
 Venue** Venue_From_XML::Get_Venue_From_XML()
 {
 	string filename;
+	int count = 0;
 
 	cout << "Please enter the XML filename you would like to input: ";
 	getline(cin, filename);
@@ -122,7 +123,7 @@ Venue** Venue_From_XML::Get_Venue_From_XML()
 		Address* address = Get_Address(address_node);									//Get address
 
 		venue[i] = new Venue(venue_name, *address);									//Create new venue
-
+		venue[count++] = new Venue;
 		TiXmlNode* seat_row_node = address_node->NextSibling();							//Node - Seat Row
 		assert(seat_row_node != 0);
 		//Seat_Row* seat_rows = Get_Seats(seat_row_node);

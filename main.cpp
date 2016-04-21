@@ -14,7 +14,7 @@ int main()
 	//int nr_states = 0;
 
 	cout << "This is the Level 0 Ticket Booth program!" << endl;
-	int nr_venues = 3;
+	int nr_venues = 0;//change
 	/*Venue* venue = Venue_From_XML::Get_Venue_From_XML();
 	venue->Display_All();*/
 
